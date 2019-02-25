@@ -1,0 +1,24 @@
+﻿<Window x:Class="WPFChat.View.LoginWPF"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        AllowsTransparency="True" MouseLeftButtonDown="Window_MouseLeftButtonDown" WindowStartupLocation="CenterScreen"
+        WindowStyle="None" Background="Transparent"
+        Title="登录" Height="350" Width="450">
+    <Border x:Name="mainBorder" Style="{StaticResource MainBorderStyle}">
+        <Border.Background>
+            <VisualBrush TileMode="Tile">
+                <VisualBrush.Visual>
+                    <Image UseLayoutRounding="True" d:DesignUseLayoutRounding="True">
+                        <Image.Source>
+                            <BitmapImage CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="D:\iwork\NBSChain\ghost-chat\WPFChat\WPFChat\Theme\LoginBanner.png"/>
+                        </Image.Source>
+                    </Image>
+                </VisualBrush.Visual>
+            </VisualBrush>
+        </Border.Background>
+    </Border>
+
+</Window>
