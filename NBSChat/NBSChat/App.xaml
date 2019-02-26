@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:NBSChat"
              StartupUri="MainWindow.xaml">
-    
+
     <Application.Resources>
+        <!-- 样式字典 -->
         <ResourceDictionary>
             
             <ResourceDictionary.MergedDictionaries>

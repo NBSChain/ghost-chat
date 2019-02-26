@@ -10,18 +10,32 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
+    <!-- CommStyle -->
+    <Style x:Key="NormalStyle" TargetType="{x:Type Control}">
+        <Setter Property="Foreground" Value="#ffffff00"/>
+        <Setter Property="Background" Value="#336666ff" />
+    </Style>
+    <Style x:Key="HoverStyle" TargetType="{x:Type Control}">
+        <Setter Property="Foreground" Value="#ffffff00"/>
+        <Setter Property="Background" Value="#336666ff" />
+    </Style>
+    <Style x:Key="PressStyle" TargetType="{x:Type Control}">
+        <Setter Property="Foreground" Value="#ffffff00"/>
+        <Setter Property="Background" Value="#336666ff" />
+    </Style>
 
 
     <!-- 层级菜单样式 -->
-    <Style x:Key="NIconMenuItem" TargetType="MenuItem">
+    <Style x:Key="NIconMenuItem" TargetType="MenuItem" >
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="BorderBrush" Value="{StaticResource MenuBorderBrush}"/>
         <Setter Property="Background" Value="{StaticResource MenuBackgroundBrush}" />
-        <Setter Property="Foreground" Value="{StaticResource MenuForegroundBrush}" />
-        <Setter Property="FontSize" Value="22" />
-        <Setter Property="Height" Value="26"/>
+        <Setter Property="Foreground" Value="DarkGray" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="Height" Value="18"/>
         <Setter Property="Width" Value="Auto"/>
-        <Setter Property="Margin" Value="1"/>
+        <Setter Property="Margin" Value="2,0,2,0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type MenuItem}">
@@ -29,24 +43,24 @@
                     <Border x:Name="border" Background="Transparent" Height="{TemplateBinding Height}" Opacity="1">
                         <Grid VerticalAlignment="Center" Margin="{TemplateBinding Margin}" >
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition x:Name="icon_col" MaxWidth="35" SharedSizeGroup="MenuIconColGrp"/>
+                                <ColumnDefinition x:Name="icon_col" MaxWidth="30" SharedSizeGroup="MenuIconColGrp"/>
                                 <ColumnDefinition x:Name="text_col" Width="Auto" SharedSizeGroup="MenuTextColGrp"/>
                                 <ColumnDefinition x:Name="igt_col" Width="Auto" SharedSizeGroup="MenuIGTColGrp" />
-                                <ColumnDefinition x:Name="arrow_col" Width="16" SharedSizeGroup="MenuArrowColGrp" />
+                                <ColumnDefinition x:Name="arrow_col" Width="12" SharedSizeGroup="MenuArrowColGrp" />
                             </Grid.ColumnDefinitions>
                             <!-- icon -->
-                            <TextBlock x:Name="Part_Icon" Text="{TemplateBinding Icon}" Foreground="{TemplateBinding Foreground}" Margin="5,1,1,1"
+                            <TextBlock x:Name="Part_Icon" Text="{TemplateBinding Icon}" Foreground="{TemplateBinding Foreground}" Margin="2,1,1,1"
                                        FontSize="{TemplateBinding FontSize}" Style="{StaticResource BTIcon}" />
                             <!-- Header -->
-                            <ContentPresenter Grid.Column="1" x:Name="txtHeader" Margin="2,1,5,1" MinWidth="90" RecognizesAccessKey="True"
+                            <ContentPresenter Grid.Column="1" x:Name="txtHeader" Margin="6,1,5,1" MinWidth="80" RecognizesAccessKey="True"
                                               VerticalAlignment="Center" ContentSource="Header"/>
                             <!-- Menu Text -->
-                            <TextBlock x:Name="IGTHost" Grid.Column="2" Margin="3,1,3,1" Text="{TemplateBinding InputGestureText}"
+                            <TextBlock x:Name="IGTHost" Grid.Column="2" Margin="5,1,3,1" Text="{TemplateBinding InputGestureText}"
                                        FontSize="{TemplateBinding FontSize}" VerticalAlignment="Center" Visibility="Visible" Foreground="{TemplateBinding Foreground}"/>
                             
                             <!-- 右侧箭头 -->
-                            <TextBlock x:Name="Part_Arrow" Grid.Column="3" Text="&#xe605;" Foreground="{TemplateBinding Foreground}" 
-                                       FontSize="14" Style="{StaticResource BTIcon}"/>
+                            <TextBlock x:Name="Part_Arrow" Grid.Column="3" Text="&#xf0da;" Foreground="{TemplateBinding Foreground}" 
+                                       FontSize="10" Style="{StaticResource BTIcon}"/>
                             
                             <!-- 淡出SubItem容器 -->
                             <Popup x:Name="SubMenuPopup" AllowsTransparency="True" IsOpen="{Binding IsSubmenuOpen,RelativeSource={RelativeSource TemplatedParent}}" 
@@ -67,8 +81,8 @@
                             <Setter Property="Visibility" Value="Collapsed" TargetName="Part_Arrow" />
                             <Setter Property="Visibility" Value="Collapsed" TargetName="IGTHost" />
                             <Setter Property="Margin" Value="5,1,1,1" TargetName="Part_Icon" />
-                            <Setter Property="Margin" Value="1,1,6,1" TargetName="txtHeader" />
-                            <Setter Property="MinWidth" Value="10" TargetName="txtHeader" />
+                            <Setter Property="Margin" Value="3,1,6,1" TargetName="txtHeader" />
+                            <Setter Property="MinWidth" Value="50" TargetName="txtHeader" />
                             <Setter Property="Width" Value="0" TargetName="arrow_col" />
                         </Trigger>
                         <!-- 第一级（无子菜单）-->
@@ -76,8 +90,8 @@
                             <Setter Property="Visibility" Value="Collapsed" TargetName="Part_Arrow"/>
                             <Setter Property="Visibility" Value="Collapsed" TargetName="IGTHost"/>
                             <Setter Property="Margin" Value="5,1,1,1" TargetName="Part_Icon"/>
-                            <Setter Property="Margin" Value="1,1,6,1" TargetName="txtHeader"/>
-                            <Setter Property="MinWidth" Value="10" TargetName="txtHeader"/>
+                            <Setter Property="Margin" Value="6,1,6,1" TargetName="txtHeader"/>
+                            <Setter Property="MinWidth" Value="80" TargetName="txtHeader"/>
                             <Setter Property="Width" Value="0" TargetName="arrow_col"/>
                         </Trigger>
                         <!--SubmenuHeader:子菜单，有子菜单-->
@@ -96,16 +110,16 @@
                             <Setter TargetName="Part_Icon" Value="{StaticResource CheckedForeground}" Property="Foreground"></Setter>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="border" Value="{StaticResource DisableOpacity}" Property="Opacity"></Setter>
+                            <Setter TargetName="border" Value="1" Property="Opacity"></Setter>
                         </Trigger>
                         <!--高亮状态-->
                         <Trigger Property="IsHighlighted" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="{StaticResource MenuMouseOverBackground}"></Setter>
-                            <Setter Property="Foreground" Value="{StaticResource MenuMouseOverForeground}"></Setter>
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource MenuPressedBackground}"></Setter>
+                            <Setter Property="Foreground" Value="{StaticResource TextHighlightStyle}"></Setter>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
                             <Setter Property="Background" TargetName="border" Value="{StaticResource MenuPressedBackground}"></Setter>
-                            <Setter Property="Foreground" Value="{StaticResource MenuPressedForeground}"></Setter>
+                            <Setter Property="Foreground" Value="{StaticResource MenuPressedBackground}"></Setter>
                         </Trigger>
                         <!--子菜单打开状态-->
                         <Trigger Property="IsSubmenuOpen" Value="true" >

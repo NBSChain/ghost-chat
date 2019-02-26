@@ -12,6 +12,13 @@
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         Title="NBS 客户端" Height="650" Width="980" >
     <!-- MouseLeftButtonDown="Window_MouseLeftButtonDown" -->
+    <!-- Fontawesome -->
+    <Window.Resources>
+        <Style x:Key="FontAwesome">
+            
+        </Style>
+    </Window.Resources>
+    
     <Border x:Name="mainBorder" Style="{StaticResource MainBorderStyle}">
         <StackPanel Orientation="Vertical" VerticalAlignment="Top">
             <DockPanel>
@@ -38,10 +45,10 @@
                 <tb:TaskbarIcon x:Name="tbIcon" IconSource="nbs64.ico" TrayLeftMouseDown="TbIcon_TrayLeftMouseDown">
                     <tb:TaskbarIcon.ContextMenu>
                         <ContextMenu Style="{x:Null}">
-                            <MenuItem x:Name="miShowWindow" Header="显示窗口" Icon="&#xE633;" Style="{StaticResource DefMenuItemStyle}" />
-                            <MenuItem x:Name="miAllwaysTop" Header="总在最前" IsCheckable="True"  />
+                            <MenuItem x:Name="miShowWindow" Header="显示窗口" Icon="&#xf2d2;" Style="{StaticResource DefMenuItemStyle}" FontSize="12" />
+                            <MenuItem x:Name="miAllwaysTop" Header="总在最前" IsCheckable="True"  Icon="&#xf08d;" Style="{StaticResource DefMenuItemStyle}" FontSize="12"/>
                             <Separator Style="{StaticResource SeparatorStyle}" />
-                            <MenuItem x:Name="exitApp" Style="{StaticResource DefMenuItemStyle}" Header="退出程序" Icon="#xe64a;"/>
+                            <MenuItem x:Name="exitApp" Header="退出程序" Icon="&#xf011;" Style="{StaticResource DefMenuItemStyle}" FontSize="12" />
                         </ContextMenu>
                     </tb:TaskbarIcon.ContextMenu>
                 </tb:TaskbarIcon>
