@@ -24,10 +24,9 @@ namespace NBSChat
     {
         public static TaskbarIcon TaskIcon { get; set; }
 
-        //private WindowState _lastWinState = WindowState.Normal;//记录上一次窗口状态
+        private WindowState _lastWinState = WindowState.Normal;//记录上一次窗口状态
 
-        //private bool _reallyExit = false;
-
+        private bool _reallyExit = false;
 
 
         public MainWindow()
