@@ -31,7 +31,7 @@
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="BorderBrush" Value="{StaticResource MenuBorderBrush}"/>
         <Setter Property="Background" Value="{StaticResource MenuBackgroundBrush}" />
-        <Setter Property="Foreground" Value="DarkGray" />
+        <Setter Property="Foreground" Value="#5D5C5C" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="Height" Value="18"/>
         <Setter Property="Width" Value="Auto"/>
@@ -137,7 +137,7 @@
             <Setter.Value>
                 <DataTemplate>
                     <TextBlock x:Name="txtHeader" FontSize="{Binding FontSize,RelativeSource={RelativeSource AncestorType={x:Type MenuItem},Mode=FindAncestor}}"
-                               HorizontalAlignment="Stretch" Margin="3,1,5,1" Text="{Binding Header,RelativeSource={RelativeSource AncestorType={x:Type MenuItem},Mode=FindAncestor}}"
+                               HorizontalAlignment="Stretch" Margin="3,1,3,1" Text="{Binding Header,RelativeSource={RelativeSource AncestorType={x:Type MenuItem},Mode=FindAncestor}}"
                                VerticalAlignment="Center" Foreground="{Binding Foreground,RelativeSource={RelativeSource AncestorType={x:Type MenuItem},Mode=FindAncestor}}" />
                 </DataTemplate>
             </Setter.Value>

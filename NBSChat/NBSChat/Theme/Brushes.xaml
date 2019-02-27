@@ -7,13 +7,12 @@
 
     <SolidColorBrush x:Key="MenuBackgroundBrush" Color="#9999991e"/>
     <SolidColorBrush x:Key="MenuForegroundBrush" Color="#3333331e" />
-    <SolidColorBrush x:Key="TextForeground" Color="#0000331e"/>
+    <SolidColorBrush x:Key="TextForeground" Color="#000033"/>
 
     <!-- -->
-    <SolidColorBrush x:Key="CheckedForeground" Color="#0000331e" />
-    <SolidColorBrush x:Key="TextHighlightStyle" Color="#9208921e" />
-    <SolidColorBrush x:Key="MenuPressedBackground" Color="#0000331e" />
-    
+    <SolidColorBrush x:Key="CheckedForeground" Color="#000033" />
+    <SolidColorBrush x:Key="TextHighlightStyle" Color="#2a89a4" />
+    <SolidColorBrush x:Key="MenuPressedBackground" Color="#0000331a" />
     
    
 </ResourceDictionary>

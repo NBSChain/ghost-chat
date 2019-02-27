@@ -29,8 +29,8 @@
         </StackPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Height="45" HorizontalAlignment="Right"  Grid.Row="0" Grid.Column="2">
             <Button Style="{StaticResource OptBtnStyle}" Margin="0,1,4,19" x:Name="btnOptions" />
-            <Button Style="{StaticResource MinBtnStyle}" Margin="0,0,4,20" x:Name="btnMin" Click="Btn_Min_Click" />
-            <Button Style="{StaticResource CloseBtnStyle}" Margin="0,0,4,20" x:Name="btnClose" Click="Btn_Close_Click"/>
+            <Button Style="{StaticResource MinBtnStyle}" Margin="0,0,4,20" x:Name="btnMin"  />
+            <Button Style="{StaticResource CloseBtnStyle}" Margin="0,0,4,20" x:Name="btnClose"/>
         </StackPanel>
         <!-- 托盘菜单 -->
         <!--<tb:TaskbarIcon x:Name="tbIcon" IconSource="nbs64.ico" TrayLeftMouseDown="TbIcon_TrayLeftMouseDown" >

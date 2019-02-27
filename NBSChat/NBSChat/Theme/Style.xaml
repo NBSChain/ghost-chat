@@ -24,7 +24,7 @@
         <Setter Property="Height" Value="25"/>
         <Setter Property="FontFamily" Value="pack://application:,,,/fonts/#FontAwesome"/>
         <Setter Property="FontSize" Value="12"/>
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Foreground" Value="WhiteSmoke" />
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Background" Value="#43a9c7"/>
         <Setter Property="Template">
