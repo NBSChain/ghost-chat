@@ -91,7 +91,7 @@
                             <Setter Property="Visibility" Value="Collapsed" TargetName="IGTHost"/>
                             <Setter Property="Margin" Value="5,1,1,1" TargetName="Part_Icon"/>
                             <Setter Property="Margin" Value="6,1,6,1" TargetName="txtHeader"/>
-                            <Setter Property="MinWidth" Value="80" TargetName="txtHeader"/>
+                            <Setter Property="MinWidth" Value="40" TargetName="txtHeader"/>
                             <Setter Property="Width" Value="0" TargetName="arrow_col"/>
                         </Trigger>
                         <!--SubmenuHeader:子菜单，有子菜单-->

@@ -11,50 +11,75 @@
         WindowStyle="None" Style="{StaticResource ShadowWinStyle}" 
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         Title="NBS 客户端" Height="650" Width="980" >
-    <!-- MouseLeftButtonDown="Window_MouseLeftButtonDown" -->
-    <!-- Fontawesome -->
-    <Window.Resources>
-        <Style x:Key="FontAwesome">
-            
-        </Style>
-    </Window.Resources>
-    
     <Border x:Name="mainBorder" Style="{StaticResource MainBorderStyle}">
-        <StackPanel Orientation="Vertical" VerticalAlignment="Top">
-            <DockPanel>
+        <DockPanel x:Name="WinDockPanel" LastChildFill="True">
+            <!-- Window Header 45 -->
+            <StackPanel Orientation="Vertical" VerticalAlignment="Top" OpacityMask="#FFC9BABA">
                 <Grid Height="45" DockPanel.Dock="Top">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="280" />
+                        <ColumnDefinition Width="300" />
                         <ColumnDefinition  />
                     </Grid.ColumnDefinitions>
                     <!-- 窗口Icon -title -->
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Height="45" Width="280" Grid.ColumnSpan="1">
                         <Image x:Name="logo" Source="/Theme/Images/nbscli_logo.png" Height="40" Width="40" HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Center"/>
-                        <Label Content="客户端" Foreground="WhiteSmoke" FontSize="26" Margin="2,0,0,0" VerticalAlignment="Center"/>
+                        <Label Content="客户端" Foreground="WhiteSmoke" FontSize="24" Margin="2,0,0,0" VerticalAlignment="Center"/>
                     </StackPanel>
 
-                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Height="45" HorizontalAlignment="Right" Grid.ColumnSpan="2">
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Height="45" HorizontalAlignment="Right" Grid.ColumnSpan="2" Grid.Row="0">
                         <Button Style="{StaticResource OptBtnStyle}" Margin="0,1,4,19" x:Name="btnOptions" />
                         <Button Style="{StaticResource MinBtnStyle}" Margin="0,0,4,20" x:Name="btnMin" Click="Btn_Min_Click" />
                         <Button Style="{StaticResource CloseBtnStyle}" Margin="0,0,4,20" x:Name="btnClose" Click="Btn_Close_Click"/>
                     </StackPanel>
+                    <!-- 托盘菜单 -->
+                    <tb:TaskbarIcon x:Name="tbIcon" IconSource="nbs64.ico" TrayLeftMouseDown="TbIcon_TrayLeftMouseDown" >
+                        <tb:TaskbarIcon.ContextMenu>
+                            <ContextMenu Style="{x:Null}">
+                                <MenuItem x:Name="miShowWindow" Header="隐藏窗口" Icon="&#xf17a;" Style="{StaticResource DefMenuItemStyle}" 
+                                      FontSize="12" Click="TrayMeunItem_ShowOrHidden_Click"/>
+                                <MenuItem x:Name="miAllwaysTop" Header="总在最前" IsCheckable="True"  Icon="&#xf08d;" Style="{StaticResource DefMenuItemStyle}" FontSize="12"/>
+                                <Separator Style="{StaticResource SeparatorStyle}" />
+                                <MenuItem x:Name="exitApp" Header="退出程序" Icon="&#xf011;" Style="{StaticResource DefMenuItemStyle}" FontSize="12" Click="Btn_Exit_Click"/>
+                            </ContextMenu>
+                        </tb:TaskbarIcon.ContextMenu>
+                    </tb:TaskbarIcon>
                 </Grid>
+                <!-- Main Stack -->
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top"  OpacityMask="#FFC9BABA">
+                    <Grid Width="Auto" Height="Auto" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="280" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+                        <Border x:Name="Left_Panel_Border" BorderThickness="0.2" Width="280" MaxWidth="300" MinHeight="582"
+                                Grid.RowSpan="4" Grid.Column="0" Grid.Row="0"
+                            BorderBrush="{StaticResource MenuBorderBrush}" Background="#445656ff" Opacity="0.2">
+                        </Border>
+                        <Rectangle x:Name="LAvatarRect" Grid.Column="0" Grid.Row="0">
+                            
+                        </Rectangle>
 
+                        <StackPanel x:Name="RChat_Title_StackPanel" OpacityMask="#FFC9BABA" Margin="3"
+                                    Grid.Row="0" Grid.Column="1" Orientation="Horizontal" FlowDirection="LeftToRight" >
+                            <Label Foreground="{StaticResource TextForeground}" Background="Transparent" FontSize="22">nsfd</Label>
+                        </StackPanel>
 
-                <!-- 托盘菜单 -->
-                <tb:TaskbarIcon x:Name="tbIcon" IconSource="nbs64.ico" TrayLeftMouseDown="TbIcon_TrayLeftMouseDown">
-                    <tb:TaskbarIcon.ContextMenu>
-                        <ContextMenu Style="{x:Null}">
-                            <MenuItem x:Name="miShowWindow" Header="显示窗口" Icon="&#xf2d2;" Style="{StaticResource DefMenuItemStyle}" FontSize="12" />
-                            <MenuItem x:Name="miAllwaysTop" Header="总在最前" IsCheckable="True"  Icon="&#xf08d;" Style="{StaticResource DefMenuItemStyle}" FontSize="12"/>
-                            <Separator Style="{StaticResource SeparatorStyle}" />
-                            <MenuItem x:Name="exitApp" Header="退出程序" Icon="&#xf011;" Style="{StaticResource DefMenuItemStyle}" FontSize="12" />
-                        </ContextMenu>
-                    </tb:TaskbarIcon.ContextMenu>
-                </tb:TaskbarIcon>
-            </DockPanel>
-        </StackPanel>
+                        <StackPanel x:Name="RightChatView" Grid.Column="1" Grid.RowSpan="2" Grid.Row="1"
+                                    Background="Transparent" Width="Auto" MinWidth="680">
 
+                        </StackPanel>
+                    </Grid>
+
+                </StackPanel>
+            </StackPanel>
+
+        </DockPanel>
     </Border>
 
 </Window>

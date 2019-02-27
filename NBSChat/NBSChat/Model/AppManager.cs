@@ -30,7 +30,7 @@ namespace NBSChat.Model
 
         private static System.Collections.Hashtable audioHt;
 
-        private static bool _mintoTray = false;//托盘是否最小
+        private static bool _mintoTray = true;//托盘是否最小
 
         private static string _appbgImg = String.Empty;
 

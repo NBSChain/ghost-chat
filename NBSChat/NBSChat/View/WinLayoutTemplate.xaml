@@ -1,0 +1,108 @@
+﻿<Window x:Class="NBSChat.View.WinLayoutTemplate"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:NBSChat.View"
+        mc:Ignorable="d"
+        WindowStyle="None" Style="{StaticResource ShadowWinStyle}" 
+        Title="魔板" Height="650" Width="980">
+    <!-- Copyright © NBS-Tech Team 2019.All rights reserved. -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280"/>
+            <ColumnDefinition />
+            <ColumnDefinition MinWidth="100"/>
+        </Grid.ColumnDefinitions>
+        <!-- 窗体背景 -->
+        <Border x:Name="mainBorder" Style="{StaticResource MainBorderStyle}"
+                Grid.RowSpan="2" Grid.ColumnSpan="3"></Border>
+        <!-- 窗口Icon -title -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Height="45" Width="280" Grid.Column="0" Grid.Row="0">
+            <!--<Image x:Name="logo" Source="/Theme/Images/nbscli_logo.png" Height="40" Width="40" HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Center"/>-->
+            <Label Content="NBS客户端" Foreground="WhiteSmoke" FontSize="24" Margin="2,0,0,0" VerticalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Height="45" HorizontalAlignment="Right"  Grid.Row="0" Grid.Column="2">
+            <Button Style="{StaticResource OptBtnStyle}" Margin="0,1,4,19" x:Name="btnOptions" />
+            <Button Style="{StaticResource MinBtnStyle}" Margin="0,0,4,20" x:Name="btnMin" Click="Btn_Min_Click" />
+            <Button Style="{StaticResource CloseBtnStyle}" Margin="0,0,4,20" x:Name="btnClose" Click="Btn_Close_Click"/>
+        </StackPanel>
+        <!-- 托盘菜单 -->
+        <!--<tb:TaskbarIcon x:Name="tbIcon" IconSource="nbs64.ico" TrayLeftMouseDown="TbIcon_TrayLeftMouseDown" >
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu Style="{x:Null}">
+                    <MenuItem x:Name="miShowWindow" Header="隐藏窗口" Icon="&#xf17a;" Style="{StaticResource DefMenuItemStyle}" 
+                                      FontSize="12" Click="TrayMeunItem_ShowOrHidden_Click"/>
+                    <MenuItem x:Name="miAllwaysTop" Header="总在最前" IsCheckable="True"  Icon="&#xf08d;" Style="{StaticResource DefMenuItemStyle}" FontSize="12"/>
+                    <Separator Style="{StaticResource SeparatorStyle}" />
+                    <MenuItem x:Name="exitApp" Header="退出程序" Icon="&#xf011;" Style="{StaticResource DefMenuItemStyle}" FontSize="12" Click="Btn_Exit_Click"/>
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+        </tb:TaskbarIcon>-->
+        
+        <!-- Left -->
+        <DockPanel x:Name="LeftDockContainer" Grid.Column="0" Grid.Row="1" Background="Transparent" Opacity="0.3" LastChildFill="True">
+            <WrapPanel DockPanel.Dock="Top" Height="Auto" FlowDirection="LeftToRight">
+                <Image Source="/Theme/lamborcar.png"  Height="45" HorizontalAlignment="Left" Margin="20,2,10,2"/>
+                <Label  VerticalAlignment="Center" >lanbery....</Label>
+            </WrapPanel>
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="10,4,5,0" FlowDirection="LeftToRight">
+                <TextBox x:Name="SearchText" Width="220" FontSize="12" VerticalAlignment="Bottom" Height="22" >暂不可用...</TextBox>
+                <Button FontSize="16">查询</Button>
+            </StackPanel>
+            <ListView DockPanel.Dock="Top" Foreground="Red" TextSearch.Text="Name" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ListViewItem>
+                    <Label Foreground="Red" HorizontalContentAlignment="Right">hello</Label>
+                </ListViewItem>
+            </ListView>
+        </DockPanel>
+
+        <!-- Right -->
+        <Grid Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition MaxHeight="45"/>
+                <RowDefinition />
+                <RowDefinition MaxHeight="120"/>
+            </Grid.RowDefinitions>
+            <!-- 群聊 -->
+            <WrapPanel Grid.Column="0" Grid.Row="0">
+                <Label Foreground="WhiteSmoke" HorizontalContentAlignment="Left" Margin="10,0,10,0" >NBS群聊</Label>
+            </WrapPanel>
+            <!-- RChatView -->
+            <ListView Background="WhiteSmoke" Grid.Row="1" Opacity="0.6">
+                <ListViewItem>
+                    <Label Foreground="Red" HorizontalContentAlignment="Left" >你好</Label>
+                </ListViewItem>
+                <ListViewItem>
+                    <Label Foreground="Red" HorizontalContentAlignment="Right">hello</Label>
+                </ListViewItem>
+            </ListView>
+            <DockPanel x:Name="RChatMsgSendContainer" Grid.Row="2" LastChildFill="True" FlowDirection="LeftToRight">
+                <WrapPanel  DockPanel.Dock="Right" VerticalAlignment="Center" Margin="6,1,6,2"  HorizontalAlignment="Center">
+                    <Button Style="{StaticResource BtnStyle}">发送</Button>
+                </WrapPanel>
+                <WrapPanel DockPanel.Dock="Top" VerticalAlignment="Bottom" >
+                    <Menu x:Name="SenderOperPanel" Style="{StaticResource DefaultMenuStyle}">
+                        <MenuItem x:Name="emoj" Header="cut" Icon="&#xf0c4;" Style="{StaticResource DefMenuItemStyle}" 
+                                      FontSize="14" Background="Transparent" />
+                        <MenuItem x:Name="cut" Header="emoj" Icon="&#xf118;" Style="{StaticResource DefMenuItemStyle}" 
+                                      FontSize="14" Background="Transparent" />
+                    </Menu>
+                </WrapPanel>
+                <DockPanel Margin="4,4,2,4">
+                    <TextBox x:Name="Send_text" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" >
+                        hasdfaf
+                    </TextBox>
+                </DockPanel>
+                
+
+            </DockPanel>
+        </Grid>
+        
+    </Grid>
+</Window>

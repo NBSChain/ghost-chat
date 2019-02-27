@@ -7,6 +7,8 @@
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Foreground" Value="WhiteSmoke"/>
     </Style>
+
+    
     <!-- Twitter Icon -->
     <Style x:Key="BTIcon" TargetType="TextBlock" BasedOn="{StaticResource DefFontAweStyle}">
         <Setter Property="Foreground" Value="{StaticResource TextForeground}" />
@@ -16,7 +18,35 @@
         <Setter Property="FontSize" Value="20"/>
     </Style>
 
-
+    <!-- 默认按钮样式 -->
+    <Style x:Key="BtnStyle" TargetType="{x:Type Button}" >
+        <Setter Property="Width" Value="70"/>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="FontFamily" Value="pack://application:,,,/fonts/#FontAwesome"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Background" Value="#43a9c7"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                        <TextBlock Text="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#2f96b4"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#2a89a4"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    
     <!-- 主页内容边框 -->
     <Style TargetType="{x:Type Border}" x:Key="MainBorderStyle">
         <Setter Property="CornerRadius" Value="1"/>

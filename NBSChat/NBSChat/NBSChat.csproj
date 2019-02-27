@@ -131,7 +131,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\" />
     <Folder Include="Resources\" />
     <Folder Include="View\" />
   </ItemGroup>
@@ -177,6 +176,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Theme\Images\icons\exit20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\font-awesome.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

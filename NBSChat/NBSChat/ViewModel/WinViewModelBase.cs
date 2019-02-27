@@ -117,8 +117,9 @@ namespace NBSChat.ViewModel
                 this.Window.Show();
             } else
             {
-                this.IsShow = true;
+                
             }
+            this.IsShow = true;
         }
 
         ///<summary>
@@ -132,8 +133,45 @@ namespace NBSChat.ViewModel
             }
         }
 
+        /// <summary>
+        /// 打开窗口模式
+        /// </summary>
+        public virtual void ShowDialog()
+        {
+            if(this.Window != null)
+            {
+                this.Window.ShowDialog();
+            }
+            else
+            {
 
+            }
+            this.IsShow = true;
+        }
 
+        /// <summary>
+        /// 使窗体最小化
+        /// </summary>
+        public virtual void Minimize()
+        {
+            this.Window.WindowState = WindowState.Minimized;
+        }
+
+        /// <summary>
+        /// 使窗体最大化
+        /// </summary>
+        public virtual void Maximize()
+        {
+            this.Window.WindowState = WindowState.Maximized;
+        }
+
+        /// <summary>
+        /// 使窗体正常
+        /// </summary>
+        public virtual void Normal()
+        {
+            this.Window.WindowState = WindowState.Normal;
+        }
         #endregion
     }
 
