@@ -5,10 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="clr-namespace:Meziantou.WpfFontAwesome;assembly=Meziantou.WpfFontAwesome"
         xmlns:local="clr-namespace:ChatCli"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="980" WindowStyle="SingleBorderWindow">
-    <WrapPanel FlowDirection="LeftToRight">
-        <fa:FontAwesomeIcon SolidIcon="Female" FontSize="45"/>
-        <TextBlock Text="&#xf006;" Style="{StaticResource FIcon}" >ok</TextBlock>
-    </WrapPanel>
+        Icon="/nbs64.ico"
+        WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize"
+        mc:Ignorable="d" Style="{StaticResource ShadowWinStyle}"
+        Title="MainWindow" Height="650" Width="980" WindowStyle="none">
+    <Grid>
+        <!-- 窗体背景 -->
+        <Border x:Name="mainBorder" Style="{StaticResource MainContentBgStyle}"
+                Grid.RowSpan="2" Grid.ColumnSpan="3"></Border>
+        <WrapPanel FlowDirection="LeftToRight">
+
+            <fa:FontAwesomeIcon SolidIcon="Female" FontSize="45"/>
+            <TextBlock Text="&#xf006;" Style="{StaticResource FIcon}" >ok</TextBlock>
+        </WrapPanel>
+    </Grid>
+ 
 </Window>

@@ -3,4 +3,6 @@
                     xmlns:local="clr-namespace:ChatCli.Styles">
     <!-- Copyright © NBS-Tech Team 2019.All rights reserved. -->
     <SolidColorBrush x:Key="TextForegroundColor" Color="#555555"/>
+
+    <SolidColorBrush x:Key="WinContentBackground" Color="#FFF8F81e"/>
 </ResourceDictionary>

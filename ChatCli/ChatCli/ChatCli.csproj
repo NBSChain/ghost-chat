@@ -88,6 +88,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\WindowStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -121,13 +125,32 @@
     <Resource Include="License.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Images\icons\" />
     <Folder Include="Module\" />
     <Folder Include="Styles\user\" />
     <Folder Include="View\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Fonts\font-awesome.css" />
+    <Resource Include="Images\appbg.png" />
+    <Resource Include="Images\icons\clipart-option-white.png" />
+    <Resource Include="Images\icons\Close.png" />
+    <Resource Include="Images\icons\Close_Hover.png" />
+    <Resource Include="Images\icons\Close_Press.png" />
+    <Resource Include="Images\icons\exit20.png" />
+    <Resource Include="Images\icons\Maximize.png" />
+    <Resource Include="Images\icons\Maximize_Hover.png" />
+    <Resource Include="Images\icons\Maximize_Press.png" />
+    <Resource Include="Images\icons\Minimize.png" />
+    <Resource Include="Images\icons\Minimize_Hover.png" />
+    <Resource Include="Images\icons\Minimize_Press.png" />
+    <Resource Include="Images\icons\Normal_Hover.png" />
+    <Resource Include="Images\icons\Normal_Press.png" />
+    <Resource Include="Images\icons\Options.png" />
+    <Resource Include="Images\icons\Options_Hover.png" />
+    <Resource Include="Images\icons\Options_Press.png" />
+    <Resource Include="Images\icons\Setting.png" />
+    <Resource Include="Images\icons\Setting_Hover.png" />
+    <Resource Include="nbs64.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
