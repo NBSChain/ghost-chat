@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5769F1A9-E6EA-46F1-AE99-094884B3C21E}</ProjectGuid>
+    <ProjectGuid>{09991BA5-4BC7-4E3B-BD4C-363E9D3B83AA}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>NBSChat</RootNamespace>
-    <AssemblyName>NBSChat</AssemblyName>
+    <RootNamespace>ChatCli</RootNamespace>
+    <AssemblyName>ChatCli</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -35,11 +35,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="GalaSoft.MvvmLight, Version=5.4.0.1, Culture=neutral, PublicKeyToken=d9452de2c18e9148, processorArchitecture=MSIL">
       <HintPath>..\packages\Uno.GalaSoft.MvvmLight.5.4.0-uno.134\lib\netstandard2.0\GalaSoft.MvvmLight.dll</HintPath>
     </Reference>
-    <Reference Include="Hardcodet.Wpf.TaskbarNotification, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Hardcodet.NotifyIcon.Wpf.1.0.8\lib\net451\Hardcodet.Wpf.TaskbarNotification.dll</HintPath>
+    <Reference Include="Meziantou.WpfFontAwesome, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Meziantou.WpfFontAwesome.5.7.2\lib\net40\Meziantou.WpfFontAwesome.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -61,16 +64,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
-    <Compile Include="Model\AppManager.cs" />
-    <Compile Include="Utility\XamlHelper.cs" />
-    <Compile Include="ViewModel\WinViewModelBase.cs" />
-    <Compile Include="View\ContactListView.xaml.cs">
-      <DependentUpon>ContactListView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\WinLayoutTemplate.xaml.cs">
-      <DependentUpon>WinLayoutTemplate.xaml</DependentUpon>
-    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -83,35 +76,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Theme\Brushes.xaml">
+    <Page Include="Styles\Brushes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Theme\ButtonStyle.xaml">
+    <Page Include="Styles\ButtonStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Theme\MenuStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Theme\ScrollViewer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Theme\Style.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Theme\WindowStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\ContactListView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\WinLayoutTemplate.xaml">
+    <Page Include="Styles\Style.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -134,9 +107,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Resource Include="fonts\fontawesome-webfont.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    <Resource Include="Fonts\fontawesome-webfont.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -144,61 +115,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-    <Folder Include="Theme\user\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Theme\nbs_logo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Theme\App_nbs.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="nbs64.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Theme\Images\bg.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Theme\Images\appbg.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Theme\Images\icons\clipart-option-white.png" />
-    <Resource Include="Theme\Images\icons\Close.png" />
-    <Resource Include="Theme\Images\icons\Close_Hover.png" />
-    <Resource Include="Theme\Images\icons\Close_Press.png" />
-    <Resource Include="Theme\Images\icons\Maximize.png" />
-    <Resource Include="Theme\Images\icons\Maximize_Hover.png" />
-    <Resource Include="Theme\Images\icons\Maximize_Press.png" />
-    <Resource Include="Theme\Images\icons\Minimize.png" />
-    <Resource Include="Theme\Images\icons\Minimize_Hover.png" />
-    <Resource Include="Theme\Images\icons\Minimize_Press.png" />
-    <Resource Include="Theme\Images\icons\Normal_Hover.png" />
-    <Resource Include="Theme\Images\icons\Normal_Press.png" />
-    <Resource Include="Theme\Images\icons\Options.png" />
-    <Resource Include="Theme\Images\icons\Options_Hover.png" />
-    <Resource Include="Theme\Images\icons\Options_Press.png" />
-    <Resource Include="Theme\Images\icons\Setting.png" />
-    <Resource Include="Theme\Images\icons\Setting_Hover.png" />
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="License.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Theme\Images\nbscli_logo.png" />
+    <Folder Include="Images\icons\" />
+    <Folder Include="Module\" />
+    <Folder Include="Styles\user\" />
+    <Folder Include="View\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Theme\Images\icons\exit20.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\font-awesome.css" />
-    <Resource Include="Theme\avatars\fuchen200.png" />
-    <Resource Include="Theme\lamborcar.png" />
+    <Content Include="Fonts\font-awesome.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
