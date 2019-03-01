@@ -2,6 +2,12 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:ChatCli.Styles">
     <!-- Copyright © NBS-Tech Team 2019.All rights reserved. -->
-    
-    
+
+    <SolidColorBrush x:Key="ButtonForeground" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="ButtonBackground" Color="#D8D8D8"/>
+    <SolidColorBrush x:Key="ButtonMouseOverBackground" Color="#9DD3FA"/>
+    <SolidColorBrush x:Key="ButtonMouseOverForeground" Color="#EC2D7A"/>
+
+    <SolidColorBrush x:Key="ButtonPressedBackground" Color="#D2568C"/>
+    <SolidColorBrush x:Key="ButtonPressedForeground" Color="#FFFFFF"/>
 </ResourceDictionary>

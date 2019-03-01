@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="clr-namespace:Meziantou.WpfFontAwesome;assembly=Meziantou.WpfFontAwesome"
+        xmlns:control="clr-namespace:ChatCli.Component"
         xmlns:local="clr-namespace:ChatCli"
         Icon="/nbs64.ico"
         WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize"
@@ -15,8 +16,10 @@
                 Grid.RowSpan="2" Grid.ColumnSpan="3"></Border>
         <WrapPanel FlowDirection="LeftToRight">
 
-            <fa:FontAwesomeIcon SolidIcon="Female" FontSize="45"/>
+            <fa:FontAwesomeIcon SolidIcon="FileAudio" FontSize="45"/>
             <TextBlock Text="&#xf006;" Style="{StaticResource FIcon}" >ok</TextBlock>
+
+            <control:FButton FIcon="&#xf007;" Margin="2" >用户</control:FButton>
         </WrapPanel>
     </Grid>
  
