@@ -11,16 +11,28 @@
         mc:Ignorable="d" Style="{StaticResource ShadowWinStyle}"
         Title="MainWindow" Height="650" Width="980" WindowStyle="none">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="140"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
         <!-- 窗体背景 -->
         <Border x:Name="mainBorder" Style="{StaticResource MainContentBgStyle}"
                 Grid.RowSpan="2" Grid.ColumnSpan="3"></Border>
-        <WrapPanel FlowDirection="LeftToRight">
+        <Border x:Name="brMain" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Background="Transparent">
+            <WrapPanel FlowDirection="LeftToRight">
 
-            <fa:FontAwesomeIcon SolidIcon="FileAudio" FontSize="45"/>
-            <TextBlock Text="&#xf006;" Style="{StaticResource FIcon}" >ok</TextBlock>
+                <fa:FontAwesomeIcon SolidIcon="FileAudio" FontSize="45"/>
+                <TextBlock Text="&#xf006;" Style="{StaticResource FIcon}" >ok</TextBlock>
 
-            <control:FButton FIcon="&#xf007;" Margin="2" >用户</control:FButton>
-        </WrapPanel>
+                <control:FButton FIcon="&#xf007;" Margin="2" >用户</control:FButton>
+            </WrapPanel>
+        </Border>
+
     </Grid>
  
 </Window>
