@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:DemoTheme.Theme">
+    <!-- Copyright © NBS-Tech Team 2019.All rights reserved. -->
+    <!-- 
+    定义全局线条、颜色样式
+    -->
+
+    <Color x:Key="CompInfoBgColor" ScR="204" ScG="102" ScB="51" ScA="39" />
+    
+    <SolidColorBrush x:Key="WinThemeColor" Color="#cccccc"/>
+    <SolidColorBrush x:Key="ForegroundColor" Color="WhiteSmoke" />
+
+    <SolidColorBrush x:Key="CompHoverBgColor" Color="#cc3300" />
+
+    <SolidColorBrush x:Key="CompInfoBackground" Color="{StaticResource CompInfoBgColor}" />
+</ResourceDictionary>
