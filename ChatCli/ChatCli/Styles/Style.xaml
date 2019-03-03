@@ -3,13 +3,32 @@
                     xmlns:local="clr-namespace:ChatCli.Styles">
     <!-- Copyright © NBS-Tech Team 2019.All rights reserved. -->
     <!-- FontAwe 5 -->
-    <FontFamily x:Key="FontAwesome47" >pack://application;,,,/Fonts/#FontAwesome</FontFamily>
+    <!-- Fontawesome 4.7 -->
+    <FontFamily x:Key="FontAwesome" >pack://application;,,,/Fonts/#FontAwesome</FontFamily>
     <Style x:Key="FIcon" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="{StaticResource FontAwesome47}"/>
+        <Setter Property="FontFamily" Value="{StaticResource FontAwesome}"/>
         <Setter Property="Foreground" Value="{StaticResource TextForegroundColor}"/>
         <Setter Property="Margin" Value="2,0,2,0" />
         <Setter Property="TextAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="20"/>
+    </Style>
+
+    <Style x:Key="DefLabelStyle" TargetType="{x:Type Label}">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="{StaticResource FontAwesome}"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="{StaticResource TextForegroundColor}" />
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+
+    <Style x:Key="LeftLabelStyle" TargetType="{x:Type Label}" BasedOn="{StaticResource DefLabelStyle}">
+        <Setter Property="HorizontalContentAlignment" Value="Right"/>
+        <Setter Property="Margin" Value="2,0,4,0"/>
+    </Style>
+    <Style x:Key="RightLabelStyle" TargetType="{x:Type Label}" BasedOn="{StaticResource DefLabelStyle}">
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="Margin" Value="2,0,4,0"/>
     </Style>
 </ResourceDictionary>

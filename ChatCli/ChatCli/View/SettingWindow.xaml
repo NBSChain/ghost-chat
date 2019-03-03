@@ -17,8 +17,10 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="25"/>
+                <RowDefinition Height="100"/>
                 <RowDefinition />
                 <RowDefinition Height="30"/>
+                <RowDefinition Height="4"/>
             </Grid.RowDefinitions>
             <WrapPanel x:Name="AppTitle" Orientation="Horizontal" Grid.Row="0" Grid.Column="0"  Background="Transparent">
                 <control:FButton FIcon="&#xf001;" Margin="0,1,2,1" FIconMargin="4,2,4,2" FIconSize="16" MinWidth="60" HorizontalContentAlignment="Left"
@@ -27,17 +29,47 @@
                 </control:FButton>
             </WrapPanel>
             <StackPanel x:Name="WinControlToolbar" Orientation="Horizontal" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right">
-                <Button Style="{StaticResource CloseBtnStyle}" Margin="0,0,2,20" x:Name="btnClose" Click="Btn_Close_Click"/>
+                <Button Style="{StaticResource CloseBtnStyle}" Margin="0,0,0,4" x:Name="btnClose" Click="Btn_Close_Click"/>
             </StackPanel>
             
-            <Border Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2" Background="Transparent" >
-            </Border>
             <!-- 中间内容 -->
-            <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
-                <Image Source="/Images/avatars/fuchen200.png" Width="80" Height="80" Margin="0,10,0,10"/>
+            <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
+                <Image Source="/Images/avatars/fuchen200.png" Width="80" Height="80" />
+                <control:FButton FIcon="&#xf2be;" Style="{StaticResource FButtonTransparency}" Margin="0,2,0,2">USdsdf-sdfvs</control:FButton>
             </StackPanel>
+            <Grid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25*"/>
+                    <RowDefinition Height="25*"/>
+                    <RowDefinition Height="25*"/>
+                    <RowDefinition Height="25*"/>
+                    <RowDefinition Height="25*"/>
+                    <RowDefinition Height="25*"/>
+                    <RowDefinition Height="25*"/>
+                    <RowDefinition Height="41*"/>
+                </Grid.RowDefinitions>
+                <!-- 常规设置 -->
+                <Label Grid.Column="0" Grid.Row="0"
+                    Content="&#xf2be;" Style="{StaticResource LeftLabelStyle}" FontSize="22" />
+
+                <TextBox Grid.Column="1" Grid.Row="0">
+                    
+                </TextBox>
+
+            </Grid>
+            
             
             <!-- 底部按钮 -->
+            <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="5,2"
+                        Orientation="Horizontal" HorizontalAlignment="Right">
+                <control:FButton FIcon="&#xf20e;" FIconSize="16" FIconMargin="2,0,4,0" FontSize="12">初始化</control:FButton>
+                <control:FButton FIcon="&#xf0c7;" FIconSize="16" FIconMargin="2,0,4,0" FontSize="12">保存</control:FButton>
+                <control:FButton FIcon="&#xf19c;" FIconSize="16" FIconMargin="2,0,4,0" FontSize="12">取消</control:FButton>
+            </StackPanel>
         </Grid>
     </Border>
 </Window>
