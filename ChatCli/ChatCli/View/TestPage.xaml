@@ -12,6 +12,10 @@
     <Grid>
         <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
             <fa:FontAwesomeIcon Margin="4,0,4,0" BrandIcon="GithubSquare" FontSize="32"></fa:FontAwesomeIcon>
+            <control:FButton FIcon="&#xf001;" Margin="4,1,2,1" FIconMargin="0" FIconSize="16" MinWidth="60"
+                             Style="{StaticResource FButtonTransparency}">
+                音乐
+            </control:FButton>
             <Menu Style="{StaticResource DefaultMenuStyle}" VerticalContentAlignment="Center">
                 <MenuItem Header="帮助(H)"  InputGestureText="Ctrl+H" Icon="&#xe643;" >
                     <MenuItem Header="设置" Icon="&#xE633;"/>
