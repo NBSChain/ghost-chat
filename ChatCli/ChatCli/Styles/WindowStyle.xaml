@@ -26,6 +26,13 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <!-- 窗口标题样式 -->
+    <Style x:Name="AppTitleLabelStyle" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="WhiteSmoke"/>
+        <Setter Property="FontSize" Value="28"/>
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
     
     <!-- Window Content Background -->
     <Style TargetType="{x:Type Border}" x:Key="MainContentBgStyle">
@@ -39,6 +46,68 @@
                         <Image Source="/Images/appbg.png"></Image>
                     </VisualBrush.Visual>
                 </VisualBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <!-- 关闭按钮 -->
+    <Style TargetType="Button" x:Key="CloseBtnStyle">
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="ToolTip" Value="关闭"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Image Name="btnImg" Source="/Images/icons/Close.png" Width="20" Height="20"/>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Source" TargetName="btnImg"  Value="/Images/icons/Close_Hover.png" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Source" TargetName="btnImg" Value="/Images/icons/Close_Press.png" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- 最小化 -->
+    <Style TargetType="Button" x:Key="MinBtnStyle">
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="ToolTip" Value="最小化"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Image Name="btnImg" Source="/Images/icons/Minimize.png" Width="20" Height="20"/>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Source" TargetName="btnImg"  Value="/Images/icons/Minimize_Hover.png" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Source" TargetName="btnImg" Value="/Images/icons/Minimize_Press.png" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Options -->
+    <Style TargetType="Button" x:Key="OptBtnStyle">
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="ToolTip" Value="设置"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Image Name="btnImg" Source="/Images/icons/Options.png" Width="20" Height="20"/>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Source" TargetName="btnImg"  Value="/Images/icons/Options_Hover.png" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Source" TargetName="btnImg" Value="/Images/icons/Options_Press.png" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>

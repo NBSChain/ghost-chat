@@ -3,12 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:tb="http://www.hardcodet.net/taskbar"
         xmlns:fa="clr-namespace:Meziantou.WpfFontAwesome;assembly=Meziantou.WpfFontAwesome"
         xmlns:control="clr-namespace:ChatCli.Component"
         xmlns:local="clr-namespace:ChatCli"
-        Icon="/nbs64.ico"
+        Icon="/nbs64.ico" 
         WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize"
-        mc:Ignorable="d" Style="{StaticResource ShadowWinStyle}"
+        mc:Ignorable="d" Style="{StaticResource ShadowWinStyle}" MouseLeftButtonDown="Window_MouseLeftDownDrag"
         Title="MainWindow" Height="650" Width="980" WindowStyle="none">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -22,17 +23,34 @@
         </Grid.RowDefinitions>
         <!-- 窗体背景 -->
         <Border x:Name="mainBorder" Style="{StaticResource MainContentBgStyle}"
-                Grid.RowSpan="2" Grid.ColumnSpan="3"></Border>
-        <Border x:Name="brMain" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Background="Transparent">
-            <WrapPanel FlowDirection="LeftToRight">
-
-                <fa:FontAwesomeIcon SolidIcon="FileAudio" FontSize="45"/>
-                <TextBlock Text="&#xf006;" Style="{StaticResource FIcon}" >ok</TextBlock>
-
-                <control:FButton FIcon="&#xf007;" Margin="2" >用户</control:FButton>
+                Grid.RowSpan="2" Grid.ColumnSpan="3">
+            <WrapPanel x:Name="AppTitle" Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="Transparent">
+                <Label Content="NBS 客户端" FontSize="28" VerticalContentAlignment="Center" Margin="4,0,0,0" Background="Transparent" />
             </WrapPanel>
         </Border>
+        <StackPanel x:Name="WinControlToolbar" Orientation="Horizontal" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right">
+            <Button Style="{StaticResource OptBtnStyle}" Margin="0,1,4,19" x:Name="btnOptions" />
+            <Button Style="{StaticResource MinBtnStyle}" Margin="0,0,4,20" x:Name="btnMin" Click="Btn_Minimize_Click"/>
+            <Button Style="{StaticResource CloseBtnStyle}" Margin="0,0,4,20" x:Name="btnClose" Click="Btn_Close_Click"/>
+        </StackPanel>
+        <!-- 主页 -->
+        <Border x:Name="brMain" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" 
+                BorderThickness="0.2" BorderBrush="{x:Null}" Background="Transparent">
+        </Border>
 
+        <tb:TaskbarIcon x:Name="tbNotifyIcon" IconSource="nbs64.ico" Visibility="Visible"
+                        TrayLeftMouseDown="TbIcon_TrayLeftMouseDown" >
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu Style="{x:Null}">
+                    <MenuItem x:Name="miShowWindow" Header="隐藏窗口" Icon="&#xf17a;" Style="{DynamicResource DefaultMenuItemStyle}"
+                               Click="TrayMeunItem_ShowOrHidden_Click" />
+                    <MenuItem x:Name="miAllwaysTop" Header="总在最前" IsCheckable="True"  Icon="&#xf08d;" Style="{DynamicResource DefaultMenuItemStyle}" 
+                              />
+                    <Separator Style="{StaticResource SeparatorStyle}"/>
+                    <MenuItem x:Name="exitApp" Header="退出程序" Icon="&#xf011;" Style="{StaticResource DefaultMenuItemStyle}" Click="Btn_Exit_Click"/>
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+        </tb:TaskbarIcon>
     </Grid>
  
 </Window>

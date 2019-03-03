@@ -100,6 +100,7 @@
         <Setter Property="Template" Value="{StaticResource FButton_Template}"/>
     </Style>
 
+    <!-- 透明背景 -->
     <Style x:Key="FButtonTransparency" TargetType="{x:Type local:FButton}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="MouseOverBackground" Value="Transparent" />
