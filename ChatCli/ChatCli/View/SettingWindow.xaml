@@ -43,21 +43,21 @@
                     <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="25*"/>
-                    <RowDefinition Height="25*"/>
-                    <RowDefinition Height="25*"/>
-                    <RowDefinition Height="25*"/>
-                    <RowDefinition Height="25*"/>
-                    <RowDefinition Height="25*"/>
-                    <RowDefinition Height="25*"/>
-                    <RowDefinition Height="41*"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <!-- 常规设置 -->
                 <Label Grid.Column="0" Grid.Row="0"
                     Content="&#xf2be;" Style="{StaticResource LeftLabelStyle}" FontSize="22" />
 
-                <TextBox Grid.Column="1" Grid.Row="0">
-                    
+                <TextBox Grid.Column="1" Grid.Row="0" >
+                    lanbery
                 </TextBox>
 
             </Grid>

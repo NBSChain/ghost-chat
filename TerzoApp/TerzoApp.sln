@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TerzoApp", "TerzoApp\TerzoApp.csproj", "{5734D5D0-8739-4989-B0C0-FBF0EC9558BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Urus.UI", "..\..\..\DappNBS\WPFEstoque\Urus.UI\Urus.UI\Urus.UI.csproj", "{A7E0DD58-BC31-42E0-BF00-1AFE1C70A4B5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5734D5D0-8739-4989-B0C0-FBF0EC9558BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5734D5D0-8739-4989-B0C0-FBF0EC9558BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5734D5D0-8739-4989-B0C0-FBF0EC9558BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5734D5D0-8739-4989-B0C0-FBF0EC9558BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7E0DD58-BC31-42E0-BF00-1AFE1C70A4B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7E0DD58-BC31-42E0-BF00-1AFE1C70A4B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7E0DD58-BC31-42E0-BF00-1AFE1C70A4B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7E0DD58-BC31-42E0-BF00-1AFE1C70A4B5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4851B62C-B804-4FD7-BCEF-BD050A23668D}
+	EndGlobalSection
+EndGlobal

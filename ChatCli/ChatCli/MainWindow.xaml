@@ -7,7 +7,7 @@
         xmlns:fa="clr-namespace:Meziantou.WpfFontAwesome;assembly=Meziantou.WpfFontAwesome"
         xmlns:control="clr-namespace:ChatCli.Component"
         xmlns:local="clr-namespace:ChatCli"
-        Icon="/nbs64.ico" 
+        ShowInTaskbar="False"
         WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize"
         mc:Ignorable="d" Style="{StaticResource ShadowWinStyle}" MouseLeftButtonDown="Window_MouseLeftDownDrag"
         Title="MainWindow" Height="650" Width="980" WindowStyle="none">

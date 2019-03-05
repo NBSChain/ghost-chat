@@ -53,6 +53,7 @@ namespace NBSChat
             this.Visibility = Visibility.Hidden;
             //修改托盘图标和tip
             this.miShowWindow.Header = "显示窗口";
+            
         }
 
         protected override void OnClosing(CancelEventArgs e)
