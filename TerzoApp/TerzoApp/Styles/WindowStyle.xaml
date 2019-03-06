@@ -57,6 +57,6 @@
 
     <Style x:Key="WindowButtonStyle" TargetType="{x:Type u3i:IconButton}">
         <Setter Property="FontSize" Value="20" />
-        <Setter Property="Margin" Value="0,2,2,0"/>
+        <Setter Property="Margin" Value="0,2,2,2"/>
     </Style>
 </ResourceDictionary>

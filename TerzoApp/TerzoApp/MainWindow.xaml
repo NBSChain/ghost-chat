@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:u3i="clr-namespace:UrusUI;assembly=Urus.UI"
-        xmlns:local="clr-namespace:TerzoApp"
+        xmlns:local="clr-namespace:TerzoApp" MouseLeftButtonDown="Window_MouseLeftDownDrag"
         mc:Ignorable="d"  WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize"
         Style="{StaticResource ShadowWinStyle}"
         Title="MainWindow" Height="650" Width="980">
@@ -23,19 +23,21 @@
             <StackPanel Grid.Column="0">
                 <Label x:Name="NavTitle" Style="{StaticResource WinNavTitleStyle}" Content="NBS 客户端" />
             </StackPanel>
-            <StackPanel Grid.Column="2" Grid.Row="0" FlowDirection="RightToLeft" Orientation="Horizontal">
-                <u3i:IconButton x:Name="closeBtn" NormalIcon="Resources/Close.png" 
-                                HoverIcon="Resources/Close_Hover.png"
-                                PressIcon="Resources/Close_Press.png" 
+            <StackPanel Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" Orientation="Horizontal" Margin="1,1,1,10">
+                <u3i:IconButton x:Name="optionBtn" 
+                                NormalIcon="/Resources/Options.png"
+                                HoverIcon="/Resources/Options_Hover.png"
+                                PressIcon="/Resources/Options_Press.png"                      
                                 Style="{StaticResource WindowButtonStyle}"/>
-                <u3i:IconButton x:Name="minimizeBtn" NormalIcon="/Resources/Minimize.png"
+                <u3i:IconButton x:Name="minimizeBtn" Click="Btn_Minimize_Click"
+                                NormalIcon="/Resources/Minimize.png"
                                 HoverIcon="/Resources/Minimize_Hover.png"
                                 PressIcon="/Resources/Minimize_Press.png" 
                                 Style="{StaticResource WindowButtonStyle}"/>
-
-                <u3i:IconButton x:Name="optionBtn" NormalIcon="/Resources/Options.png"
-                                HoverIcon="/Resources/Options_Hover.png"
-                                PressIcon="/Resources/Options_Press.png"                      
+                <u3i:IconButton x:Name="closeBtn" Click="Btn_Close_Click"
+                                NormalIcon="Resources/Close.png" 
+                                HoverIcon="Resources/Close_Hover.png"
+                                PressIcon="Resources/Close_Press.png" 
                                 Style="{StaticResource WindowButtonStyle}"/>
 
             </StackPanel>
@@ -44,7 +46,11 @@
                         Background="Transparent" VerticalAlignment="Top">
 
             </StackPanel>
+              
         </Grid>
+        
+        <!-- 托盘 -->
+        
     </Border>
  
 </Window>

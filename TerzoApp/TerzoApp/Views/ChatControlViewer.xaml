@@ -13,7 +13,7 @@
                     BorderThickness="0,0,2,0" Height="610">
                 <DockPanel LastChildFill="True">
                     <StackPanel x:Name="AvatarPanel" DockPanel.Dock="Top" Width="Auto"
-                        Orientation="Horizontal" Height="80" VerticalAlignment="Center">
+                        Orientation="Horizontal" Height="60" VerticalAlignment="Center">
                         <Image Source="pack://application:,,,/Images/avatars/fuchen200.png" VerticalAlignment="Center"
                                Width="50" Height="50" Margin="10,0,10,0" />
                         <TextBox x:Name="CurrentNickName" BorderThickness="0"
@@ -25,13 +25,13 @@
                                 Margin="5,0,5,0" Orientation="Horizontal" HorizontalAlignment="Center">
                         <Grid>
                             <Border Background="White" Opacity="0.7" BorderBrush="Gray" BorderThickness="0.4" CornerRadius="5"/>
-                            <TextBox Width="280" VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent"/>
+                            <TextBox Width="280" VerticalContentAlignment="Center" BorderThickness="0" FontSize="14" Background="Transparent"/>
                             <Button Width="55" BorderThickness="0.4,0,0,0" BorderBrush="Gray"
                                     HorizontalAlignment="Right" Background="Transparent">搜索</Button>
                         </Grid>
                     </StackPanel>
                     <StackPanel DockPanel.Dock="Top" x:Name="NavTab" Height="45" Margin="0,2">
-                        <Grid Height="40">
+                        <Grid Height="55">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100*"/>
                                 <ColumnDefinition Width="100*"/>
