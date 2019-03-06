@@ -6,7 +6,8 @@
         xmlns:u3i="clr-namespace:UrusUI;assembly=Urus.UI"
         xmlns:local="clr-namespace:TerzoApp"
         mc:Ignorable="d"  WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize"
-        Title="MainWindow" Height="650" Width="980" WindowStyle="None">
+        Style="{StaticResource ShadowWinStyle}"
+        Title="MainWindow" Height="650" Width="980">
 
     <Border x:Name="mainBorder" Style="{StaticResource MainBorderStyle}">
         <Grid>
@@ -16,7 +17,7 @@
                 <ColumnDefinition Width="150*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="45"/>
+                <RowDefinition Height="40"/>
                 <RowDefinition />
             </Grid.RowDefinitions>
             <StackPanel Grid.Column="0">

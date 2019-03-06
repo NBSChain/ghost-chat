@@ -5,73 +5,160 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TerzoApp.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="610" d:DesignWidth="980">
+             d:DesignHeight="610" d:DesignWidth="960">
     <!-- Copyright © NBS-Tech Team 2019.All rights reserved. -->
     <DockPanel LastChildFill="True">
-        <Border x:Name="LeftBorder" Background="LightGray" Opacity="0.3" DockPanel.Dock="Left" Width="280"
-                BorderBrush="DarkGoldenrod" BorderThickness="0,0,2,0">
-            <DockPanel LastChildFill="True" >
-                <Grid DockPanel.Dock="Top">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="80"/>
-                        <RowDefinition Height="35"/>
-                        <RowDefinition Height="55"/>
-                    </Grid.RowDefinitions>
-                    <StackPanel x:Name="AvatarPanel" DockPanel.Dock="Top" Grid.Column="0" Grid.Row="0"
-                            Orientation="Horizontal" Height="80" VerticalAlignment="Top">
-                        <Image Source="pack://application:,,,/Images/avatars/fuchen200.png" Width="50" Height="50" Margin="10,0,10,0"
-                   VerticalAlignment="Center"/>
-                        <Label Content="Lanbery" FontSize="18" VerticalContentAlignment="Top" Foreground="WhiteSmoke"/>
+        <DockPanel LastChildFill="True" DockPanel.Dock="Left" Width="300">
+            <Border Background="White" OpacityMask="Cyan" Opacity="0.7" BorderBrush="#DADAD2" 
+                    BorderThickness="0,0,2,0" Height="610">
+                <DockPanel LastChildFill="True">
+                    <StackPanel x:Name="AvatarPanel" DockPanel.Dock="Top" Width="Auto"
+                        Orientation="Horizontal" Height="80" VerticalAlignment="Center">
+                        <Image Source="pack://application:,,,/Images/avatars/fuchen200.png" VerticalAlignment="Center"
+                               Width="50" Height="50" Margin="10,0,10,0" />
+                        <TextBox x:Name="CurrentNickName" BorderThickness="0"
+                            TextWrapping="Wrap" VerticalContentAlignment="Center"  FontSize="20">
+                            Lanbery
+                        </TextBox>
                     </StackPanel>
-                    <StackPanel x:Name="Searcher" DockPanel.Dock="Top" Height="35"
-                                Grid.Column="0" Grid.Row="1">
-                        <!-- 搜索 -->
+                    <StackPanel DockPanel.Dock="Top" x:Name="Searcher" Height="35" 
+                                Margin="5,0,5,0" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Grid>
+                            <Border Background="White" Opacity="0.7" BorderBrush="Gray" BorderThickness="0.4" CornerRadius="5"/>
+                            <TextBox Width="280" VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent"/>
+                            <Button Width="55" BorderThickness="0.4,0,0,0" BorderBrush="Gray"
+                                    HorizontalAlignment="Right" Background="Transparent">搜索</Button>
+                        </Grid>
                     </StackPanel>
-                    <Grid x:Name="NavTabBar" Grid.Column="0" Grid.Row="2">
-
-                    </Grid>
-                </Grid>
-                <StackPanel x:Name="LeftListBoxStack"  VerticalAlignment="Center">
-                    <Label Content="联系人列表" Foreground="Red" FontSize="32"  HorizontalAlignment="Center"/>
-                </StackPanel>
-            </DockPanel>
-        </Border>
-
-        <!-- 右侧 -->
-        <DockPanel LastChildFill="True">
-
-            <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
-                <Label x:Name="CurrentChatTitle" Grid.Row="0" 
-                Content="群聊(当前在线2人)" FontSize="16" Margin="10,5,0,5" Foreground="White"/>
-            </StackPanel>
-            <ListBox x:Name="MessageList" DockPanel.Dock="Top">
-                <ListBoxItem BorderBrush="LightSlateGray" BorderThickness="0,0,0,2">
-                    <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight">
-                        <Image Source="pack://application:,,,/Images/avatars/fuchen200.png" Width="50"  Margin="10,0,10,0"/>
-                        <TextBlock TextWrapping="WrapWithOverflow" Text="你好....." Margin="0,5,0,2" FontSize="14" ></TextBlock>
+                    <StackPanel DockPanel.Dock="Top" x:Name="NavTab" Height="45" Margin="0,2">
+                        <Grid Height="40">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100*"/>
+                                <ColumnDefinition Width="100*"/>
+                                <ColumnDefinition Width="100*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" BorderBrush="Azure" BorderThickness="0">全部</Button>
+                            <Button Grid.Column="1"  BorderThickness="0">联系人</Button>
+                            <Button Grid.Column="2"  BorderThickness="0">文件</Button>
+                        </Grid>
                     </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem BorderBrush="LightSlateGray" BorderThickness="0,0,0,2">
-                    <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight">
-                        <Image Source="pack://application:,,,/Images/avatars/fuchen200.png" Width="50"  Margin="10,0,10,0"/>
-                        <TextBlock TextWrapping="WrapWithOverflow" Text="你好....." Margin="0,5,0,2" FontSize="14" ></TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem BorderBrush="LightSlateGray" BorderThickness="0,0,0,2" HorizontalContentAlignment="Right">
-                    <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight" >
-                        <TextBlock TextWrapping="WrapWithOverflow" Text="你好....." Margin="0,5,5,2" FontSize="14" ></TextBlock>
-                        <Image Source="pack://application:,,,/Images/avatars/fuchen200.png" Width="50"  Margin="10,0,10,0"/>
-                    </StackPanel>
-                </ListBoxItem>                
-            </ListBox>
-            <Grid DockPanel.Dock="Bottom" Height="160" VerticalAlignment="Bottom">
-                <TextBox x:Name="Send_text" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" >
-                    hello
-                </TextBox>
-            </Grid>
+                    <DockPanel x:Name="LeftListBoxStack" LastChildFill="True">
+                        <ListBox Background="Transparent" DockPanel.Dock="Top" BorderThickness="0">
+                            <ListBoxItem  Background="Transparent">
+                                <Label Content="联系人列表" Foreground="Red" FontSize="32"  HorizontalAlignment="Center"/>
+                            </ListBoxItem>
+                        </ListBox>
+                    </DockPanel>
+                </DockPanel>
+            </Border>
         </DockPanel>
+        <!-- Right -->
+        <DockPanel LastChildFill="True" >
+            <StackPanel DockPanel.Dock="Top" Background="Transparent">
+                <Border BorderThickness="0,0,0,2" BorderBrush="#DADAD2" Height="70">
+                    <Label Content="群聊信息" Foreground="#FFFFFF" FontSize="24"  HorizontalAlignment="Left"
+                       Background="Transparent"/>
+                    
+                </Border>
+            </StackPanel>
+            <DockPanel LastChildFill="True" >
+                <Border Background="AliceBlue" Opacity="0.8">
+                    <DockPanel LastChildFill="True" VerticalAlignment="Stretch">
+                        <StackPanel DockPanel.Dock="Bottom" VerticalAlignment="Center" Margin="0,10">
+                            <Grid Height="65">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30*"/>
+                                    <ColumnDefinition Width="540*"/>
+                                    <ColumnDefinition Width="60*"/>
+                                </Grid.ColumnDefinitions>
+                                <Border BorderThickness="0.2" BorderBrush="Gray" Grid.Column="1" Margin="10,0"
+                                        CornerRadius="20" Background="LightGray" MaxHeight="45" Opacity="0.5">
+                                    <DockPanel LastChildFill="True">
+                                        <StackPanel DockPanel.Dock="Left" Width="45" VerticalAlignment="Center">
+                                            <Button BorderThickness="0">表情</Button>
+                                        </StackPanel>
 
+                                        <StackPanel DockPanel.Dock="Right" Width="45" VerticalAlignment="Center">
+                                            <Button BorderThickness="0">添加</Button>
+                                        </StackPanel>
+                                        <Grid>
+                                            <TextBox TextWrapping="Wrap" MaxLength="2000" MaxWidth="450" Height="45" FontSize="16"
+                                                VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent">
+
+                                            </TextBox>
+                                        </Grid>
+                                    </DockPanel>
+                                </Border>
+
+                                <StackPanel Grid.Column="2" HorizontalAlignment="Left"
+                                            VerticalAlignment="Center" Orientation="Vertical">
+                                    <Grid>
+                                        <Ellipse Width="35" Height="35" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                             StrokeThickness="1" Stroke="White" Fill="Goldenrod" Opacity="0.3"/>
+                                        <TextBlock Text="+" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                               Foreground="WhiteSmoke" FontSize="35" Background="Transparent"/>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                        <!-- 聊天历史 开始 -->
+                        <ScrollViewer>
+                            <ListBox BorderThickness="0">
+                                <ListBoxItem BorderThickness="0" HorizontalContentAlignment="Left">
+                                    <Border >
+                                        <StackPanel Orientation="Horizontal">
+                                            <Grid Margin="10,2,10,2" Background="Transparent">
+                                                <Image Source="pack://application:,,,/Images/avatars/fuchen200.png" Width="40"/>
+                                                <Ellipse Width="40" Height="40"
+                                                     Fill="Transparent" Opacity="0.8" Stroke="Gray" StrokeThickness="1" />
+                                            </Grid>
+                                            <StackPanel MaxWidth="500">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Label  Content="lanbery" FontSize="14"/>
+                                                    <Label  Content="刚刚..." FontSize="12"/>
+                                                </StackPanel>
+                                                <TextBox TextWrapping="Wrap" BorderThickness="0" Background="Transparent">
+                                                    jksdfafdalksdfamdf,asdlkhdsfasdfasdfsadfasdfasdf带来开
+                                                    发阿达撒范德萨肯定撒拉法是否恢复大大幅度
+                                                    dsafhkdsafkdsfsad卡戴珊阿斯蒂芬金卡和辅导书阿斯顿发回家啊
+                                                    倒是发的说法
+                                                </TextBox>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Border>
+                                </ListBoxItem>
+                                <!-- 2 -->
+                                <ListBoxItem BorderThickness="0" HorizontalContentAlignment="Right">
+                                    <Border>
+                                        <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
+                                            <Grid Margin="10,2,10,2" Background="Transparent">
+                                                <Image Source="pack://application:,,,/Images/avatars/fuchen200.png" Width="40"/>
+                                                <Ellipse Width="40" Height="40"
+                                                     Fill="Transparent" Opacity="0.8" Stroke="Gray" StrokeThickness="1" />
+                                            </Grid>
+
+                                            <StackPanel MaxWidth="500">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Label  Content="lanbery" FontSize="14"/>
+                                                    <Label   Content="2019-10-2 12:33:45" FontSize="12"/>
+                                                </StackPanel>
+                                  
+                                                <TextBox TextWrapping="Wrap" BorderThickness="0" Background="Transparent">
+                                                    jksdfafdalksdfamdf,asdlkhdsfasdfasdfsadfasdfasdf带来开
+                                                    发阿达撒范德萨肯定撒拉法是否恢复大大幅度
+                                                    dsafhkdsafkdsfsad卡戴珊阿斯蒂芬金卡和辅导书阿斯顿发回家啊
+                                                    倒是发的说法
+                                                </TextBox>
+                                            </StackPanel>
+                                   
+                                        </StackPanel>
+                                    </Border>
+                                </ListBoxItem>
+                            </ListBox>
+                        </ScrollViewer>
+                    </DockPanel>
+                </Border>
+            </DockPanel>
+        </DockPanel>
     </DockPanel>
-    
-
 </UserControl>
