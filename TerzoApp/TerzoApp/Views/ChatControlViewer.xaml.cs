@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UrusUI;
 
 /**
  * ┌───────────────────────────────────────────────────────────────────────┐
@@ -37,5 +38,36 @@ namespace TerzoApp.Views
         {
             InitializeComponent();
         }
+
+        #region 窗体操作
+        private void NavBtn_Click(object sender,RoutedEventArgs e)
+        {
+            this._swicthBtn(sender as FVButton);
+        }
+
+        private void _swicthBtn(FVButton btn)
+        {
+            string arg = (btn.CommandParameter).ToString();
+            if (arg.Length == 0) return;
+            bool _isSelected = btn.IsSelected;
+
+            FVButton[] fvbs = { this.NavButtonMSG,this.NavButtonContacts,this.NavButtonFiles};
+            //当前没选中
+
+            foreach(FVButton fvb in fvbs)
+            {
+                if(btn.Name == fvb.Name)
+                {
+                    btn.IsSelected = true;
+                }
+                else
+                {
+                    fvb.IsSelected = false;
+                }
+            }
+
+        }
+
+        #endregion
     }
 }

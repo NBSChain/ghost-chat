@@ -4,12 +4,14 @@
              xmlns:local="clr-namespace:TerzoApp"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        
         <!-- 样式字典 -->
         <ResourceDictionary>
-
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Styles/Brushes.xaml"/>
-                <ResourceDictionary Source="/Styles/WindowStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Urus.UI;component/Themes/generic.xaml"/>
+                
+                <ResourceDictionary Source="Styles/Brushes.xaml"/>
+                <ResourceDictionary Source="Styles/WindowStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
