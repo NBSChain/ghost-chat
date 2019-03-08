@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UrusUI;
+using TerzoApp.Model;
 
 /**
  * ┌───────────────────────────────────────────────────────────────────────┐
@@ -34,9 +35,21 @@ namespace TerzoApp.Views
     /// </summary>
     public partial class ChatControlViewer : UserControl
     {
+        
+
         public ChatControlViewer()
         {
             InitializeComponent();
+        }
+
+        public string NICK
+        {
+            get
+            {
+                return String.IsNullOrEmpty(AOM.CURR_NICK) ? "" : AOM.CURR_NICK;
+            }
+
+            set { }
         }
 
         #region 窗体操作

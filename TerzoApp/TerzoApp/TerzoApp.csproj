@@ -77,6 +77,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converter\Date2FormatConverter.cs" />
+    <Compile Include="Models\MessageInfo.cs" />
     <Compile Include="Model\AppOptionModel.cs" />
     <Compile Include="Views\ChatControlViewer.xaml.cs">
       <DependentUpon>ChatControlViewer.xaml</DependentUpon>
@@ -94,6 +96,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Styles\Brushes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\MsgListViewStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -178,7 +184,7 @@
     <Resource Include="Resources\Setting_Hover.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\avatars\fuchen200.png" />
+    <Resource Include="avatars\fuchen200.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\ballooning.png" />

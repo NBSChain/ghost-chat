@@ -7,55 +7,42 @@ using System.Threading.Tasks;
 
 /**
  * ┌───────────────────────────────────────────────────────────────────────┐
- * │Project	: TerzoApp.Model
+ * │Project	: TerzoApp.Models
  * │ 
  * │Comment	:
  * │
  * │Version	: V1.0.0.0
  * │Author	: lanbery
- * │CreatTime	: 2019/3/6 17:09:36													
+ * │CreatTime	: 2019/3/8 16:40:23													
  * ├───────────────────────────────────────────────────────────────────────┤
  * │Copyright © NBS-Tech Team 2019.All rights reserved.
  * └───────────────────────────────────────────────────────────────────────┘
  */
-namespace TerzoApp.Model
+namespace TerzoApp.Models
 {
-    class AOM
+    class MessageInfo
     {
-        public const string ApplicationName = "NBSChatClient";
-
-        private static bool _mintoTray = false;//关闭按钮是否直接关闭
-
-        private static string _appbgImg = String.Empty;
-
-        private static string _avatarSubPath = "avatars"; 
-
-        public static bool MinToTray
+        /// <summary>
+        /// 消息的唯一标示
+        /// </summary>
+        public string UID
         {
-            get { return _mintoTray; }
-            set { _mintoTray = value; }
+            get;set;
         }
 
-        public static string AppBgImg
+        public string HashID { get; set; }
+
+        public string ShowTime
         {
-            get { return _appbgImg; }
-            set { _appbgImg = value; }
+            get;set;
         }
 
-        /// <summary>
-        /// 可执行文件启动目录
-        /// </summary>
-        public static string StartPath { get; set; }
+        public DateTime? RealTime { get; set; }
 
+        public string NickName { get; set; }
 
+        public string MsgContent { get; set; }
 
-        /// <summary>
-        /// 配置文件路径
-        /// </summary>
-        public static string Config { get; set; }
-
-        public static string UHashID { get; set; }
-
-        public static string CURR_NICK { get; set; }
+        public string AvatarImg { get; set; }
     }
 }

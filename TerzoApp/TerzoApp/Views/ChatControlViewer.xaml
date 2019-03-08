@@ -15,12 +15,12 @@
                 <DockPanel LastChildFill="True">
                     <StackPanel x:Name="AvatarPanel" DockPanel.Dock="Top" Width="Auto"
                         Orientation="Horizontal" Height="60" VerticalAlignment="Center">
-                        <Image Source="pack://application:,,,/Images/avatars/fuchen200.png" VerticalAlignment="Center"
+                        <Image Source="pack://application:,,,/avatars/fuchen200.png" VerticalAlignment="Center"
                                Width="50" Height="50" Margin="10,0,10,0" />
                         <TextBox x:Name="CurrentNickName" BorderThickness="0"
-                            TextWrapping="Wrap" VerticalContentAlignment="Center"  FontSize="20">
-                            Lanbery
-                        </TextBox>
+                            TextWrapping="Wrap" VerticalContentAlignment="Center"  FontSize="20"
+                            Text="{Binding NICK}"        
+                         />
                     </StackPanel>
                     <StackPanel DockPanel.Dock="Top" x:Name="Searcher" Height="35" 
                                 Margin="5,0,5,0" Orientation="Horizontal" HorizontalAlignment="Center">
@@ -104,7 +104,7 @@
                                              Width="35" FIconSize="22" Foreground="#EB6100"/>
                                         </StackPanel>
                                         <Grid>
-                                            <TextBox TextWrapping="Wrap" MaxLength="2000" MaxWidth="450" Height="45"
+                                            <TextBox x:Name="SenderText" TextWrapping="Wrap" MaxLength="2000" MaxWidth="450" Height="45"
                                                FontSize="17" Foreground="#000"
                                                 VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent">
 nihao
@@ -125,12 +125,12 @@ nihao
                         </StackPanel>
                         <!-- 聊天历史 开始 -->
                         <ScrollViewer>
-                            <ListBox BorderThickness="0">
+                            <ListBox x:Name="MessageListBox" BorderThickness="0">
                                 <ListBoxItem BorderThickness="0" HorizontalContentAlignment="Left">
                                     <Border >
                                         <StackPanel Orientation="Horizontal">
                                             <Grid Margin="10,2,10,2" Background="Transparent">
-                                                <Image Source="pack://application:,,,/Images/avatars/fuchen200.png" Width="40"/>
+                                                <Image Source="pack://application:,,,/avatars/fuchen200.png" Width="40"/>
                                                 <Ellipse Width="40" Height="40"
                                                      Fill="Transparent" Opacity="0.8" Stroke="Gray" StrokeThickness="1" />
                                             </Grid>
@@ -154,15 +154,22 @@ nihao
                                     <Border>
                                         <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
                                             <Grid Margin="10,2,10,2" Background="Transparent">
-                                                <Image Source="pack://application:,,,/Images/avatars/fuchen200.png" Width="40"/>
-                                                <Ellipse Width="40" Height="40"
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="50*"/>
+                                                    <RowDefinition Height="10*"/>
+                                                </Grid.RowDefinitions>
+                                                <Image Grid.Row="0" Source="pack://application:,,,/avatars/fuchen200.png" Width="40"/>
+                                                <Ellipse Grid.Row="0" Width="40" Height="40"
                                                      Fill="Transparent" Opacity="0.8" Stroke="Gray" StrokeThickness="1" />
+                                                <StackPanel Grid.Row="1" FlowDirection="LeftToRight" HorizontalAlignment="Right">
+                                                    <Label Content="失败..." Foreground="Red" FontSize="8" HorizontalAlignment="Right"/>
+                                                </StackPanel>
                                             </Grid>
 
                                             <StackPanel MaxWidth="500">
                                                 <StackPanel Orientation="Horizontal">
-                                                    <Label  Content="lanbery" FontSize="14"/>
-                                                    <Label   Content="2019-10-2 12:33:45" FontSize="12"/>
+                                                    <Label  Content="lanbery" FontSize="14" />
+                                                    <Label   Content="2019-10-2 12:33:45" FontSize="12" FlowDirection="LeftToRight"/>
                                                 </StackPanel>
                                   
                                                 <TextBox TextWrapping="Wrap" BorderThickness="0" Background="Transparent">

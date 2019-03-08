@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Hardcodet.Wpf.TaskbarNotification;
 using TerzoApp.Views;
+using TerzoApp.Model;
 
 namespace TerzoApp
 {
@@ -17,12 +18,20 @@ namespace TerzoApp
         public MainWindow()
         {
             InitializeComponent();
+            this.InitNBSSvrInfo();
             TaskIcon = new TaskbarIcon();
             TaskIcon.Icon = Properties.Resources.logo;
             this._loadMainContainer();
 
             TaskIcon.ShowBalloonTip("提示", "客户端启动成功", BalloonIcon.Info);
         }
+
+        private void InitNBSSvrInfo()
+        {
+            AOM.CURR_NICK = "lanbery";
+        }
+
+
         protected override void OnClosing(CancelEventArgs e)
         {
             base.OnClosing(e);
