@@ -81,6 +81,10 @@ namespace TerzoApp.Views
 
         }
 
+        private void InitNick()
+        {
+            
+        }
         #endregion
     }
 }

@@ -7,42 +7,18 @@ using System.Threading.Tasks;
 
 /**
  * ┌───────────────────────────────────────────────────────────────────────┐
- * │Project	: TerzoApp.Models
+ * │Project	: TerzoApp.ViewModel
  * │ 
  * │Comment	:
  * │
  * │Version	: V1.0.0.0
  * │Author	: lanbery
- * │CreatTime	: 2019/3/8 16:40:23													
+ * │CreatTime	: 2019/3/8 21:06:34													
  * ├───────────────────────────────────────────────────────────────────────┤
  * │Copyright © NBS-Tech Team 2019.All rights reserved.
  * └───────────────────────────────────────────────────────────────────────┘
  */
-namespace TerzoApp.Models
+namespace TerzoApp.ViewModel
 {
-    class MessageInfo
-    {
-        /// <summary>
-        /// 消息的唯一标示
-        /// </summary>
-        public string UID
-        {
-            get;set;
-        }
 
-        public string HashID { get; set; }
-
-        public string ShowTime
-        {
-            get;set;
-        }
-
-        public DateTime? RealTime { get; set; }
-
-        public string NickName { get; set; }
-
-        public string MsgContent { get; set; }
-
-        public string AvatarImg { get; set; }
-    }
 }

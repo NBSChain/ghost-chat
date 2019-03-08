@@ -78,8 +78,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converter\Date2FormatConverter.cs" />
-    <Compile Include="Models\MessageInfo.cs" />
+    <Compile Include="Model\ContactModel.cs" />
+    <Compile Include="Model\MessageInfo.cs" />
     <Compile Include="Model\AppOptionModel.cs" />
+    <Compile Include="ViewModel\ContactListViewModel.cs" />
+    <Compile Include="ViewModel\CurrentPeerViewModel.cs" />
+    <Compile Include="ViewModel\MessageRecordListViewModel.cs" />
+    <Compile Include="ViewModel\QueryCommand.cs" />
     <Compile Include="Views\ChatControlViewer.xaml.cs">
       <DependentUpon>ChatControlViewer.xaml</DependentUpon>
     </Compile>
@@ -159,6 +164,10 @@
       <Project>{a7e0dd58-bc31-42e0-bf00-1afe1c70a4b5}</Project>
       <Name>Urus.UI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\UrusLib\UrusLib.csproj">
+      <Project>{8783e666-baec-47e0-b49f-c17baf259e42}</Project>
+      <Name>UrusLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\appbg.png" />
@@ -188,6 +197,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\ballooning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="avatars\nbs100.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

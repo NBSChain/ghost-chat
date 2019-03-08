@@ -4,9 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:u2ui="clr-namespace:UrusUI;assembly=Urus.UI"
-             xmlns:local="clr-namespace:TerzoApp.Views"
+             xmlns:vm="clr-namespace:TerzoApp.ViewModel"
+             
              mc:Ignorable="d" 
              d:DesignHeight="610" d:DesignWidth="960">
+    <UserControl.DataContext>
+        <vm:ContactListViewModel />
+    </UserControl.DataContext>
     <!-- Copyright © NBS-Tech Team 2019.All rights reserved. -->
     <DockPanel LastChildFill="True">
         <DockPanel LastChildFill="True" DockPanel.Dock="Left" Width="300">
@@ -19,7 +23,7 @@
                                Width="50" Height="50" Margin="10,0,10,0" />
                         <TextBox x:Name="CurrentNickName" BorderThickness="0"
                             TextWrapping="Wrap" VerticalContentAlignment="Center"  FontSize="20"
-                            Text="{Binding NICK}"        
+                            Text="{Binding Path=NickName,Mode=OneWay}"
                          />
                     </StackPanel>
                     <StackPanel DockPanel.Dock="Top" x:Name="Searcher" Height="35" 
@@ -27,11 +31,12 @@
                         <Grid>
                             <Border Background="White" Opacity="0.2" BorderBrush="Gray" BorderThickness="0.4" CornerRadius="5"/>
                             <TextBox Width="280" VerticalContentAlignment="Center" BorderThickness="0" FontSize="14" 
-                                     Background="Transparent"/>
+                                     Text="{Binding Path=SearchText,Mode=TwoWay}"
+                                     x:Name="SeacherText" Background="Transparent"/>
                             <u2ui:FButton x:Name="BtnSeacher" Style="{StaticResource FButton_Transparency}" 
-                                          HorizontalAlignment="Right"
-                                          HorizontalContentAlignment="Right"
-                                 FIcon="&#xe751;" FIconSize="22" Width="30"></u2ui:FButton>
+                                HorizontalAlignment="Right" Cursor="Hand"
+                                Command="{Binding Path=QueryCommand}"          
+                                FIcon="&#xe751;" FIconSize="22" Width="30"></u2ui:FButton>
                             
                         </Grid>
                     </StackPanel>
@@ -63,10 +68,23 @@
                         </Grid>
                     </StackPanel>
                     <DockPanel x:Name="LeftListBoxStack" LastChildFill="True">
-                        <ListBox Background="Transparent" DockPanel.Dock="Top" BorderThickness="0">
-                            <ListBoxItem  Background="Transparent">
-                                <Label Content="联系人列表" Foreground="Red" FontSize="32"  HorizontalAlignment="Center"/>
-                            </ListBoxItem>
+                        <ListBox x:Name="resList" ItemsSource="{Binding ResultList}"
+                                 Background="Transparent" DockPanel.Dock="Top" BorderThickness="0">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Button>
+                                        <Border>
+                                            <DockPanel LastChildFill="True" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                                
+                                                <Grid>
+                                                    <Label Content="{Binding Path=Message}" FontSize="14" Foreground="BlueViolet"/>
+                                                </Grid>
+                                                
+                                            </DockPanel>
+                                        </Border>
+                                    </Button>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
                         </ListBox>
                     </DockPanel>
                 </DockPanel>
