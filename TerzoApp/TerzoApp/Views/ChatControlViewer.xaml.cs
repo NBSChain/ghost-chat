@@ -40,6 +40,8 @@ namespace TerzoApp.Views
         public ChatControlViewer()
         {
             InitializeComponent();
+            //this.RightChatMessage.Children.Clear();
+            //this.RightChatMessage.Children.Add(new MessageControlView());
         }
 
         public string NICK

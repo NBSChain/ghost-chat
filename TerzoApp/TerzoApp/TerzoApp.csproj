@@ -90,9 +90,13 @@
     <Compile Include="Model\AppOptionModel.cs" />
     <Compile Include="ViewModel\ChatViewModel.cs" />
     <Compile Include="ViewModel\CurrentPeerViewModel.cs" />
+    <Compile Include="ViewModel\MessageRecordViewModel.cs" />
     <Compile Include="ViewModel\QueryCommand.cs" />
     <Compile Include="Views\ChatControlViewer.xaml.cs">
       <DependentUpon>ChatControlViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MessageControlView.xaml.cs">
+      <DependentUpon>MessageControlView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -119,6 +123,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ChatControlViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MessageControlView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
