@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 
 /**
@@ -28,6 +29,6 @@ namespace TerzoApp.Model
 
         public string AvatarHashID { get; set; }
 
-        public string AvatarName { get; set; }
+        public BitmapImage AvatarName { get; set; }
     }
 }

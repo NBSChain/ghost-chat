@@ -39,6 +39,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.2</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -48,6 +49,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.2</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>logo128.ico</ApplicationIcon>
@@ -77,13 +79,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converter\Bool2VisibilityConverter.cs" />
     <Compile Include="Converter\Date2FormatConverter.cs" />
+    <Compile Include="Converter\DiffDateTimeConverter.cs" />
+    <Compile Include="Converter\FlowDirectionConverter.cs" />
+    <Compile Include="Converter\HorizontalAlignmentConverter.cs" />
+    <Compile Include="Converter\Path2AvatarConverter.cs" />
     <Compile Include="Model\ContactModel.cs" />
     <Compile Include="Model\MessageInfo.cs" />
     <Compile Include="Model\AppOptionModel.cs" />
-    <Compile Include="ViewModel\ContactListViewModel.cs" />
+    <Compile Include="ViewModel\ChatViewModel.cs" />
     <Compile Include="ViewModel\CurrentPeerViewModel.cs" />
-    <Compile Include="ViewModel\MessageRecordListViewModel.cs" />
     <Compile Include="ViewModel\QueryCommand.cs" />
     <Compile Include="Views\ChatControlViewer.xaml.cs">
       <DependentUpon>ChatControlViewer.xaml</DependentUpon>
@@ -104,7 +110,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\MsgListViewStyle.xaml">
+    <Page Include="Styles\ListViewStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -203,6 +209,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="avatars\nbs100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="avatars\ballon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

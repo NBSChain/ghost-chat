@@ -12,6 +12,8 @@
                 
                 <ResourceDictionary Source="Styles/Brushes.xaml"/>
                 <ResourceDictionary Source="Styles/WindowStyle.xaml"/>
+                <ResourceDictionary Source="Styles/ListViewStyle.xaml"/>
+                
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

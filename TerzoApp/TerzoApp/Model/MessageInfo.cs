@@ -20,7 +20,7 @@ using System.Threading.Tasks;
  */
 namespace TerzoApp.Model
 {
-    class MessageInfo
+    public class MessageInfo
     {
         /// <summary>
         /// 消息的唯一标示
@@ -44,5 +44,10 @@ namespace TerzoApp.Model
         public string MsgContent { get; set; }
 
         public string AvatarImg { get; set; }
+
+        public bool IsSelf
+        {
+            get;set;
+        }
     }
 }
