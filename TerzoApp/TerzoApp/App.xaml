@@ -1,20 +1,21 @@
-﻿<Application x:Class="TerzoApp.App"
+<Application x:Class="TerzoApp.App" 
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:TerzoApp"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:local="clr-namespace:TerzoApp"  
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d1p1:Ignorable="d"
              StartupUri="MainWindow.xaml">
-    <Application.Resources>
-        
-        <!-- 样式字典 -->
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Urus.UI;component/Themes/generic.xaml"/>
-                
-                <ResourceDictionary Source="Styles/Brushes.xaml"/>
-                <ResourceDictionary Source="Styles/WindowStyle.xaml"/>
-                <ResourceDictionary Source="Styles/ListViewStyle.xaml"/>
-                
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Application.Resources>
+  <Application.Resources>
+
+    <ResourceDictionary>
+        <ResourceDictionary.MergedDictionaries>
+            <!-- 样式字典 -->
+            <ResourceDictionary Source="pack://application:,,,/Urus.UI;component/Themes/generic.xaml"/>
+            <ResourceDictionary Source="Styles/Brushes.xaml"/>
+            <ResourceDictionary Source="Styles/WindowStyle.xaml"/>
+        </ResourceDictionary.MergedDictionaries>
+
+    </ResourceDictionary>
+  </Application.Resources>
 </Application>

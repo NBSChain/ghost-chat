@@ -8,13 +8,11 @@
              
              mc:Ignorable="d" 
              d:DesignHeight="610" d:DesignWidth="960">
-    <UserControl.DataContext>
-        <vm:ChatViewModel />
-    </UserControl.DataContext>
+
     <!-- Copyright © NBS-Tech Team 2019.All rights reserved. -->
     <DockPanel LastChildFill="True">
         <DockPanel LastChildFill="True" DockPanel.Dock="Left" Width="300">
-            <Border Background="White" OpacityMask="Cyan" Opacity="0.7" BorderBrush="#DADAD2" 
+            <Border Background="White" OpacityMask="Cyan" Opacity="0.6" BorderBrush="#DADAD2" 
                     BorderThickness="0,0,2,0" Height="610">
                 <DockPanel LastChildFill="True">
                     <StackPanel x:Name="AvatarPanel" DockPanel.Dock="Top" Width="Auto"
@@ -67,7 +65,8 @@
                         </Grid>
                     </StackPanel>
                     <DockPanel x:Name="LeftListBoxStack" LastChildFill="True">
-                        <ListBox x:Name="resList" ItemsSource="{Binding ResultList}" ItemTemplate="{StaticResource _ContactItemViewTemplete}"
+                        <ListBox x:Name="resList" ItemsSource="{Binding ResultList}" 
+                                 ItemTemplate="{StaticResource _ContactItemViewTemplete}"
                                  Background="Transparent" DockPanel.Dock="Top" BorderThickness="0">
                         
                         </ListBox>

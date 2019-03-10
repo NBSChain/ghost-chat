@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -47,7 +48,13 @@ namespace TerzoApp.Model
         /// </summary>
         public static string StartPath { get; set; }
 
-
+        public static string AvatarPath
+        {
+            get
+            {
+                return StartPath + Path.DirectorySeparatorChar + _avatarSubPath;
+            }
+        }
 
         /// <summary>
         /// 配置文件路径

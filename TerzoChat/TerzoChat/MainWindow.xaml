@@ -1,0 +1,64 @@
+﻿<Window x:Class="TerzoChat.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:peer="clr-namespace:TerzoChat.Peer"
+        xmlns:local="clr-namespace:TerzoChat"
+        mc:Ignorable="d"
+        DataContext="{Binding Source={StaticResource Locator},Path=Main}"
+        Title="MainWindow" Height="450" Width="800">
+    <DockPanel LastChildFill="True">
+        <StackPanel DockPanel.Dock="Left" Width="300">
+            <Border x:Name="LeftBorder" Background="Azure">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" Grid.ColumnSpan="3" 
+                            Background="AliceBlue" BorderBrush="red" BorderThickness="0,0,2,0"/>
+
+                    <StackPanel x:Name="AccInfo" Grid.Row="0"
+                                Height="60" Orientation="Horizontal" VerticalAlignment="Center">
+                        <Image Source="/avatars/fuchen200.png" Width="30" Height="30"/>
+                        <Label Content="lanbery" VerticalAlignment="Center"></Label>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" >
+                        <Button Content="remove" Command="{Binding ReMoveSelect}" Margin="10,3"
+                                CommandParameter="{Binding ElementName=LContactList,Path=SelectedItem}"/>
+                        <Button Content="add" Command="{Binding InsertOne}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2">
+                        <ListBox x:Name="LContactList" ItemsSource="{Binding ContactList}" SelectedIndex="0">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate DataType="{x:Type peer:ContactViewModel}">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <Image Source="/avatars/fuchen200.png" Width="30" Height="30" Margin="10,4"/>
+                                        <Grid Height="50">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="25"/>
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+                                            <Label x:Name="NickLabel" Grid.Row="0" Foreground="BlueViolet"
+                                                   Content="{Binding Nickname}" FontSize="15"/>
+                                            <Label x:Name="PWLabel" Grid.Row="1"
+                                                   Content="{Binding Password}" FontSize="12"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                </Grid>
+         
+            </Border>
+        </StackPanel>
+       <!-- Right -->
+        <Grid x:Name="RChatContainer">
+            
+        </Grid>       
+    </DockPanel>
+    
+</Window>

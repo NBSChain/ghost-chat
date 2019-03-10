@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="TerzoApp.Views.MessageControlView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:u2ui="clr-namespace:UrusUI;assembly=Urus.UI"
+             xmlns:vm="clr-namespace:TerzoApp.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="610" d:DesignWidth="660">
+    <!-- Copyright © NBS-Tech Team 2019.All rights reserved. -->
+    <UserControl.DataContext>
+        <vm:MessageRecordViewModel x:Name="mrvm"/>
+    </UserControl.DataContext>
+    <DockPanel LastChildFill="True" >
+        <StackPanel DockPanel.Dock="Top" Background="Transparent">
+            <Border BorderThickness="0,0,0,2" BorderBrush="#DADAD2" Height="70">
+                <Label Content="群聊信息" Foreground="#FFFFFF" FontSize="22"  HorizontalAlignment="Left"
+                       Background="Transparent"/>
+            </Border>
+        </StackPanel>
+        <DockPanel LastChildFill="True" >
+            <Border Background="AliceBlue" Opacity="0.7">
+                <DockPanel LastChildFill="True" VerticalAlignment="Stretch">
+                    <StackPanel DockPanel.Dock="Bottom" VerticalAlignment="Center" Margin="0,10">
+                        <Grid Height="65">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30*"/>
+                                <ColumnDefinition Width="540*"/>
+                                <ColumnDefinition Width="60*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border BorderThickness="0.2" BorderBrush="Gray" Grid.Column="1" Margin="10,0"
+                                        CornerRadius="20" Background="LightGray" MaxHeight="45" Opacity="0.8">
+                                <DockPanel LastChildFill="True">
+                                    <StackPanel DockPanel.Dock="Left" Width="45" VerticalAlignment="Center">
+                                        <u2ui:FButton x:Name="selEmojiBtn" FIcon="&#xe620;" 
+                                             Width="35" FIconSize="22" Foreground="#EB6100"/>
+                                    </StackPanel>
+
+                                    <StackPanel DockPanel.Dock="Right" Width="45" VerticalAlignment="Center">
+                                        <u2ui:FButton x:Name="SenderBtn" FIcon="&#xe664;" 
+                                             Width="35" FIconSize="22" Foreground="#EB6100"/>
+                                    </StackPanel>
+                                    <Grid>
+                                        <TextBox x:Name="SenderText" TextWrapping="Wrap" MaxLength="2000" MaxWidth="450" Height="45"
+                                             FontSize="17" Foreground="#000"
+                                             VerticalContentAlignment="Center" BorderThickness="0" Background="Transparent">
+                                            hh
+                                        </TextBox>
+                                    </Grid>
+                                </DockPanel>
+                            </Border>
+
+                            <StackPanel Grid.Column="2" HorizontalAlignment="Left" 
+                                            VerticalAlignment="Center" Orientation="Vertical">
+                                <Grid >
+                                    <u2ui:FButton x:Name="SendFilesBtn" FIcon="&#xe682;" Width="35" FIconSize="24" 
+                                            Style="{StaticResource FButton_Transparency}"
+                                            Foreground="{StaticResource FButtonPressedBackground}"/>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                    <!-- 聊天历史 开始 -->
+                    <ScrollViewer>
+                        <ListBox x:Name="MessageListBox" ItemsSource="{Binding cv.MsgRecordList}" ItemTemplate="{StaticResource _MessageItemViewTemplete}"
+                                     BorderThickness="0">
+
+                        </ListBox>
+                    </ScrollViewer>
+                </DockPanel>
+            </Border>
+        </DockPanel>
+    </DockPanel>
+</UserControl>
