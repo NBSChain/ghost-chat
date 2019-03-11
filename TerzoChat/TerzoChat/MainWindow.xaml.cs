@@ -23,6 +23,8 @@ namespace TerzoChat
     {
         public MainWindow()
         {
+            
+            
             InitializeComponent();
             this.LoadChat();
         }

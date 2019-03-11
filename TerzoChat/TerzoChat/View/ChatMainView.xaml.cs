@@ -37,5 +37,11 @@ namespace TerzoChat.View
         {
             InitializeComponent();
         }
+
+        private void SizeChangedFuc(object sender, SizeChangedEventArgs e)
+        {
+            double d = MsgScroll.ActualHeight;
+            MsgScroll.ScrollToVerticalOffset(d);
+        }
     }
 }

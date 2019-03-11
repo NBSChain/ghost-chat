@@ -3,7 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
 using System;
 using System.Windows.Input;
-
+using System.Windows.Controls;
 using TerzoChat.Data;
 
 
@@ -28,7 +28,7 @@ namespace TerzoChat.ViewModel
         {
             var msgs = storage.GetList();
             this.AssignCommands();
-            Title = "今天聊个天";
+            Title = "NBS群聊";
             MessageRecord = new ObservableCollection<MessageViewModel>(msgs);
         }
 
@@ -40,26 +40,58 @@ namespace TerzoChat.ViewModel
         public string SendText { get; set; }
 
         public ICommand Sending { get; private set; }
+        public ICommand SendTextEnter { get; private set; }
 
         private void AssignCommands()
         {
-            Sending = new RelayCommand<string>(a =>
+            Sending = new RelayCommand<TextBox>(a =>
             {
-                if (a == null || String.IsNullOrEmpty(a as string) || String.IsNullOrWhiteSpace(a as string)) return;
-                MessageViewModel m = new MessageViewModel
+                if (a != null && a.Text.Length > 0)
                 {
-                    Nickname = "lanbery",
-                    AvatarName = "/avatars/fuchen200.png",
-                    IsSelf = true,
-                    MessageState = Model.MessageState.Normal,
-                    ShowTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-                    MsgType = Model.MessageType.text,
-                    Content = (a as string)
-                };
-
-                MessageRecord.Add(m);
-                SendText = string.Empty;
+                    string c = a.Text;
+                    Console.WriteLine(c);
+                    this.SendContent(c);
+                    a.Text = "";
+                }
+                else
+                {
+                    return;
+                }
             });
+
+            SendTextEnter = new RelayCommand<TextBox>(a => {
+                if (a != null && a.Text.Length>0) {
+                 
+                    string c = a.Text;
+                    Console.WriteLine(c);
+                    this.SendContent(c);
+                    a.Text = "";
+                }
+                else
+                {
+                    return;
+                }
+            });
+           
+        }
+
+
+
+        private void SendContent(string content)
+        {
+            MessageViewModel m = new MessageViewModel
+            {
+                Nickname = "lanbery",
+                AvatarName = "/avatars/fuchen200.png",
+                IsSelf = true,
+                MessageState = Model.MessageState.Normal,
+                ShowTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                MsgType = Model.MessageType.text,
+                Content = content
+            };
+            MessageRecord.Add(m);
         }
     }
+
+
 }
