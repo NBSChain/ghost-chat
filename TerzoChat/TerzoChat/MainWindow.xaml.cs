@@ -1,20 +1,14 @@
 ﻿using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 using System.Diagnostics;
 using TerzoChat.View;
+using Demo;
+using Google.Protobuf;
+using Grpc;
+using Grpc.Core;
+
 
 namespace TerzoChat
 {
@@ -55,6 +49,8 @@ namespace TerzoChat
             }
             InitializeComponent();
             this.LoadChat();
+            string nick = this.getCurrent("lanbery");
+            this.NickLabel.Content = nick; 
         }
 
         private void LoadChat()
@@ -65,7 +61,6 @@ namespace TerzoChat
 
         private bool CheckedNBSRunning()
         {
-            bool b = false;
             Process[] processes;
             try
             {
@@ -77,6 +72,31 @@ namespace TerzoChat
             catch (Exception)
             {
                 return false;
+            }
+        }
+
+        private string getCurrent(string login)
+        {
+            string svrHostName = "127.0.0.1:55001";
+
+            Channel channel;
+            try
+            {
+                Console.WriteLine("=========>> GRPC connecting......");
+                channel = new Channel(svrHostName, ChannelCredentials.Insecure);
+                Console.WriteLine("Client connecting Channel " + svrHostName + ".");
+                var client = new Greeter.GreeterClient(channel);
+                var reply = client.GetCurrentAcc(new HelloRequest { Name = login });
+                Console.WriteLine("Client connecting Channel " +reply.Nickname + ".");
+
+                var msg = client.SayHelloAsync(new HelloRequest { Name = "hhhh" });
+                Console.WriteLine("Client connecting Channel msg " + msg.ToString() + ".");
+                channel.ShutdownAsync().Wait();
+                return reply.Nickname;
+            }
+            catch(Exception ex)
+            {
+                return "no account login.";
             }
         }
     }

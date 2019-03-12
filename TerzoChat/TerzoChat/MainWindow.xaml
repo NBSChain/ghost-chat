@@ -30,7 +30,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <Image Source="/avatars/fuchen200.png" Width="50" Height="50" />
-                            <Label Content="lanbery" VerticalAlignment="Center" FontSize="26"></Label>
+                            <Label x:Name="NickLabel" Content="" VerticalAlignment="Center" FontSize="26"></Label>
                         </StackPanel>
                     </DockPanel>
                     <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center"

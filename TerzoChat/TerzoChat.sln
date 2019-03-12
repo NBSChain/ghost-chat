@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TerzoChat", "TerzoChat\Terz
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Urus.UI", "..\..\..\DappNBS\WPFEstoque\Urus.UI\Urus.UI\Urus.UI.csproj", "{A7E0DD58-BC31-42E0-BF00-1AFE1C70A4B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nbs-grpc2s-lib", "..\..\gonbs-rpc-test\nbs-grpc2s-lib\nbs-grpc2s-lib.csproj", "{99568F09-9E3E-4B08-8164-6C7EB2647534}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A7E0DD58-BC31-42E0-BF00-1AFE1C70A4B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7E0DD58-BC31-42E0-BF00-1AFE1C70A4B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7E0DD58-BC31-42E0-BF00-1AFE1C70A4B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99568F09-9E3E-4B08-8164-6C7EB2647534}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99568F09-9E3E-4B08-8164-6C7EB2647534}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99568F09-9E3E-4B08-8164-6C7EB2647534}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99568F09-9E3E-4B08-8164-6C7EB2647534}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
