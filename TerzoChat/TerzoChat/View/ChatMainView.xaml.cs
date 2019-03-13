@@ -36,6 +36,7 @@ namespace TerzoChat.View
         public ChatMainView()
         {
             InitializeComponent();
+            
         }
 
         private void SizeChangedFuc(object sender, SizeChangedEventArgs e)

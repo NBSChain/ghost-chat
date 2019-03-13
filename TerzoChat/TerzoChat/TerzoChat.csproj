@@ -146,6 +146,7 @@
     <Compile Include="Data\ContactService.cs" />
     <Compile Include="Data\IStorage.cs" />
     <Compile Include="Data\MessageService.cs" />
+    <Compile Include="Model\AppState.cs" />
     <Compile Include="Model\MessageState.cs" />
     <Compile Include="Model\MessageType.cs" />
     <Compile Include="Model\Validators\MessageValidator.cs" />

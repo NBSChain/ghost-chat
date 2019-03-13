@@ -18,7 +18,7 @@ namespace TerzoChat.Peer
 {
     public class ContactViewModel : ValidObservableObject<ContactViewModel>
     {
-        public ContactViewModel() : base(ContactValidator.Singleton.Value, ViewModelState.Valid){}
+        public ContactViewModel() : base(ContactValidator.Singleton.Value, ViewModelState.Valid){  }
 
         private string _nickname;
 

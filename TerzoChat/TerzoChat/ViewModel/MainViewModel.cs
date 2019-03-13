@@ -27,15 +27,17 @@ namespace TerzoChat.ViewModel
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel(IStorage<ContactViewModel> storage)
+        public MainViewModel(IStorage<ContactViewModel> storage) : base()
         {
             var contacts = storage.GetList();
             AssignCommands();
             ContactList = new ObservableCollection<ContactViewModel>(contacts);
-
+           
         }
 
         private int _count = 0;
+
+      
 
         public string HID { get; set; }
 

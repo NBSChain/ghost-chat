@@ -8,6 +8,7 @@ using Demo;
 using Google.Protobuf;
 using Grpc;
 using Grpc.Core;
+using grpc2slib;
 using grpc2slib.BBL;
 using Pb;
 using UrusTools.Config;
@@ -21,46 +22,28 @@ namespace TerzoChat
     /// </summary>
     public partial class MainWindow : Window
     {
+        private BaseRPCService rpcService;
         public MainWindow()
         {
-            bool b = CheckedNBSRunning();
            
-            if (!b)
+            AppState.Instance.RPC_RUNNING = CheckedNBSRunning();
+           
+            if (!AppState.Instance.RPC_RUNNING)
             {
-                //MessageBox.Show("NBS 未启动");
-                string startPath = Directory.GetCurrentDirectory();
-                Console.WriteLine("====================>>>"+startPath);
-                try
-                {
-                    Process nbsp = new Process();
-                    nbsp.StartInfo.UseShellExecute = false;
-                    nbsp.StartInfo.FileName = startPath + System.IO.Path.DirectorySeparatorChar + "nbs.exe";
-                    nbsp.StartInfo.CreateNoWindow = true;
-
-                    bool r = nbsp.Start();
-                    
-                    Console.WriteLine("启动》》" + r.ToString());
-                   
-
-                }catch(Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-
+                StartNBSGrpc();
             }
-            else
-            {
-                Console.WriteLine("==================》》NBS 已启动." );
-            }
+            checkedAndCreateNBS();
+
             InitializeComponent();
             this.LoadChat();
-            string nick = this.getCurrent("lanbery");
-            this.NickLabel.Text = nick; 
+            
         }
 
         private void LoadChat()
         {
             this.RChatContainer.Children.Clear();
+            this.NickLabel.Text = AppState.Instance.CID;
+            Console.WriteLine("==============================CID===>" + AppState.Instance.CID);
             this.RChatContainer.Children.Add(new ChatMainView());
         }
 
@@ -71,8 +54,7 @@ namespace TerzoChat
             {
                 processes = Process.GetProcessesByName("nbs");
                 Console.WriteLine("nbs process :" + processes.Length.ToString());
-                return processes.Length > 0;
-                
+                return processes.Length > 0; 
             }
             catch (Exception)
             {
@@ -80,21 +62,68 @@ namespace TerzoChat
             }
         }
 
-        private string getCurrent(string login)
+        private void setNickName()
         {
-          
-            BaseRPCService service = new BaseRPCService();
-          
+            if (AppState.Instance.CID != null) this.NickLabel.Text = AppState.Instance.CID;
+        }
+  
+
+        private void StartNBSGrpc()
+        {
             try
             {
-                string version = service.GetVersion();
-                Console.WriteLine(" NBS version>>> " + version + ".");
-                return version;
+                Process nbsp = new Process();
+                nbsp.StartInfo.UseShellExecute = false;
+                nbsp.StartInfo.FileName = AppState.Instance.START_PATH + System.IO.Path.DirectorySeparatorChar + "nbs.exe";
+                nbsp.StartInfo.CreateNoWindow = true;
+                nbsp.EnableRaisingEvents = AppState.Instance.BothRpcExit;
+                bool r = nbsp.Start();
+                Console.WriteLine("启动》》" + r.ToString());
+                AppState.Instance.RPC_RUNNING = true;
             }
-            catch(Exception ex)
+            catch (Exception e)
             {
-                return login;
+                AppState.Instance.RPC_RUNNING = false;
+                Console.WriteLine(e.Message);
             }
+        }
+
+        private void checkedAndCreateNBS()
+        {
+            rpcService = new BaseRPCService();
+            //创建账户
+            try
+            {
+                AppState.Instance.CID =rpcService.GetAccount();
+                AppState.Instance.RPC_RUNNING = true;
+            }
+            catch(RpcException e)
+            {
+                AppState.Instance.RPC_RUNNING = false;
+                Console.WriteLine("====================>>>Grpc error:"+e.Message);
+            }
+            catch (RpcResultException)
+            {
+                //create
+                try
+                {
+                    rpcService.CreateAccountOffline();
+                    AppState.Instance.CID = rpcService.GetAccount();
+                    AppState.Instance.RPC_RUNNING = true;
+                }
+                catch(RpcException re)
+                { 
+                    AppState.Instance.RPC_RUNNING = false;
+                    Console.WriteLine("====================>>>Grpc create error:" + re.Message);
+                }
+            }
+            finally
+            {
+                if (!AppState.Instance.RPC_RUNNING)
+                {
+                    //TO taskbarmsg
+                }
+            }           
         }
     }
 }
