@@ -4,6 +4,8 @@ using System.Windows.Input;
 using System.Collections.ObjectModel;
 using TerzoChat.Data;
 using TerzoChat.Peer;
+using Pb;
+using grpc2slib.BBL;
 using System;
 
 namespace TerzoChat.ViewModel
@@ -35,6 +37,8 @@ namespace TerzoChat.ViewModel
 
         private int _count = 0;
 
+        public string HID { get; set; }
+
         public ObservableCollection<ContactViewModel> ContactList { get; set; }
 
         public ICommand ReMoveSelect { get; private set; }
@@ -55,6 +59,21 @@ namespace TerzoChat.ViewModel
                 Console.WriteLine("add"+_count.ToString());
                 ContactList.Add(new ContactViewModel { Nickname = "Add"+_count.ToString(), Password = "AAsss11" });
                 });
+        }
+
+        private void loadAccount()
+        {
+            BaseRPCService service = new BaseRPCService();
+            try
+            {
+                string version = service.GetVersion();
+                Console.WriteLine(" NBS version>>> " + version + ".");
+            
+            }
+            catch
+            {
+               
+            }
         }
     }
 }

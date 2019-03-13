@@ -30,7 +30,9 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <Image Source="/avatars/fuchen200.png" Width="50" Height="50" />
-                            <Label x:Name="NickLabel" Content="" VerticalAlignment="Center" FontSize="26"></Label>
+                            <TextBox x:Name="NickLabel" TextWrapping="Wrap" MaxWidth="200" 
+                                     Background="Transparent" BorderThickness="0"
+                                     VerticalAlignment="Center" FontSize="18"/>
                         </StackPanel>
                     </DockPanel>
                     <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center"
