@@ -142,6 +142,7 @@
     <Compile Include="Base\ValidationExtensions.cs" />
     <Compile Include="Base\ValidObservableObject.cs" />
     <Compile Include="Base\ViewModelState.cs" />
+    <Compile Include="BBL\SubscribeMessageService.cs" />
     <Compile Include="Config\ChatConfigManager.cs" />
     <Compile Include="Data\ContactService.cs" />
     <Compile Include="Data\IStorage.cs" />
@@ -262,9 +263,7 @@
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BBL\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="avatars\logo.png" />
     <Resource Include="avatars\nbs128.ico" />

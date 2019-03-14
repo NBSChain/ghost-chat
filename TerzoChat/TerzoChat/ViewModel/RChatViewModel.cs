@@ -1,14 +1,21 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System;
 using System.Windows.Input;
 using System.Windows.Controls;
+using UrusTools.Config;
+using Grpc.Core;
+using Grpc;
+using System.Threading.Tasks;
+using Pb;
 using grpc2slib;
 using grpc2slib.BBL;
+using TerzoChat.BBL;
 using TerzoChat.Data;
 using TerzoChat.Model;
-
+using System.Threading;
 
 
 /**
@@ -28,13 +35,28 @@ namespace TerzoChat.ViewModel
 {
     public class RChatViewModel : ViewModelBase
     {
-        private BaseRPCService service = new BaseRPCService();
+        
+        private BaseRPCService service;
         public RChatViewModel(IStorage<MessageViewModel> storage)
         {
             var msgs = storage.GetList();
             this.AssignCommands();
             Title = "NBS群聊";
             MessageRecord = new ObservableCollection<MessageViewModel>(msgs);
+
+            //Listening the World
+            //ListenNBSWorld();
+            Thread thread = new Thread(delegate ()
+            {
+                Channel c = new Channel("127.0.0.1", 10001, ChannelCredentials.Insecure);
+
+                GetMsg(c, MessageRecord).Wait();
+            });
+            thread.IsBackground = true;
+            thread.Start();
+           
+            //c.ShutdownAsync().Wait();
+            service = new BaseRPCService();
         }
 
         public ObservableCollection<MessageViewModel> MessageRecord { get; set; }
@@ -79,7 +101,60 @@ namespace TerzoChat.ViewModel
            
         }
 
+        
 
+        async static Task GetMsg(Channel channel,ObservableCollection<MessageViewModel> collection)
+        {
+            var client = new PubSubTask.PubSubTaskClient(channel);
+            SubscribeRequest request = new SubscribeRequest { Topics = "NBSWorld" };
+            string ts = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            Console.WriteLine("===>>>>>>>>>>>"+ts);
+            try
+            {
+                using(var call = client.Subscribe(request))
+                {
+                    var respStream = call.ResponseStream;
+                    while(await respStream.MoveNext())
+                    {
+                        var res = respStream.Current;
+                        
+                        Console.WriteLine("===>>>>>>>>>>>" + res.From);
+                    }
+                }
+            }catch(Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+            }
+        }
+
+        private async void ListenNBSWorld()
+        {
+            
+            Thread listenThread = new Thread(delegate ()
+            {
+                SubscribeMessageService messageService = new SubscribeMessageService();
+                try
+                {
+                    int a = 0;
+                    while (a < 10)
+                    {
+                        a++;
+                        Thread.Sleep(1000);
+                        Console.WriteLine("Thread ..... " + a.ToString());
+                    }
+                    messageService.TaskReciver(MessageRecord).Wait();
+                }
+                catch(Exception r)
+                {
+                    Console.WriteLine(r.Message);
+                }
+                
+           
+                
+            });
+            listenThread.IsBackground = true;
+            listenThread.Start();
+        }
 
         private void SendContent(string content)
         {
