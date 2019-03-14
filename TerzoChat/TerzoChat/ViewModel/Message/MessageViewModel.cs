@@ -49,6 +49,14 @@ namespace TerzoChat.ViewModel
             }
         }
 
+        private string _pid;
+
+        public string PID
+        {
+            get => _pid;
+            set => Set(ref _pid, value);
+        }
+
         public string Nickname { get => _nickname; set => Set(ref _nickname, value); }
 
         public string ShowTime { get => _stime; set => Set(ref _stime, value); }

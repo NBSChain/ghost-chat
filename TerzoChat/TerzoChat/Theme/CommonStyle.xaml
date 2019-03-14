@@ -4,4 +4,7 @@
     <!-- Copyright © NBS-Tech Team 2019.All rights reserved. -->
     <SolidColorBrush x:Key="FontTextForeground" Color="#666666"/>
     <SolidColorBrush x:Key="FIconForeground" Color="#EB6100"/>
+    
+    
+    
 </ResourceDictionary>

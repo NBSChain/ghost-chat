@@ -22,26 +22,5 @@ namespace TerzoChat.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
-        public string rpcHost {
-            get {
-                return ((string)(this["rpcHost"]));
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10001")]
-        public string rpcPort {
-            get {
-                return ((string)(this["rpcPort"]));
-            }
-            set {
-                this["rpcPort"] = value;
-            }
-        }
     }
 }

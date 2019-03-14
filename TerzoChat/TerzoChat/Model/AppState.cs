@@ -38,11 +38,6 @@ namespace TerzoChat
 
         public string START_PATH { get;}
 
-        public bool BothRpcExit
-        {
-            get;set;
-        }
-
 
         public string CID
         {
@@ -53,7 +48,6 @@ namespace TerzoChat
         private AppState()
         {
             START_PATH = Directory.GetCurrentDirectory();
-            BothRpcExit = false;
             RPC_RUNNING = false;
         }
 

@@ -266,6 +266,10 @@
     <Folder Include="BBL\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="avatars\logo.png" />
+    <Resource Include="avatars\nbs128.ico" />
+    <Resource Include="avatars\nbsstar.png" />
+    <Resource Include="avatars\other.gif" />
     <Content Include="nbs.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

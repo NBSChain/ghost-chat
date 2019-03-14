@@ -1,7 +1,9 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Windows.Input;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using UrusTools.Config;
 using TerzoChat.Data;
 using TerzoChat.Peer;
 using Pb;
@@ -29,23 +31,41 @@ namespace TerzoChat.ViewModel
         /// </summary>
         public MainViewModel(IStorage<ContactViewModel> storage) : base()
         {
-            var contacts = storage.GetList();
+            IEnumerable<ContactViewModel> contacts = storage.GetList();
+            AddSelfToContacts(contacts);
+            _nick = AppState.Instance.CID;
             AssignCommands();
-            ContactList = new ObservableCollection<ContactViewModel>(contacts);
-           
+            ContactList = new ObservableCollection<ContactViewModel>(contacts);           
         }
 
         private int _count = 0;
 
-      
 
+        private string _nick;
         public string HID { get; set; }
+
+        public string NickName { get => _nick; set => Set(ref _nick, value); }
 
         public ObservableCollection<ContactViewModel> ContactList { get; set; }
 
         public ICommand ReMoveSelect { get; private set; }
 
         public ICommand InsertOne { get; private set; }
+
+        private void AddSelfToContacts(IEnumerable<ContactViewModel> lst)
+        {
+            if (lst == null) lst = new List<ContactViewModel>();
+            if(AppState.Instance.CID.Length > 0)
+            {
+                ContactViewModel cm = new ContactViewModel
+                {
+                    Nickname = "Me",
+                    Password = AppState.Instance.CID,
+                    AvatarImg = ConfigManager.Instance.AvatarLocal()
+                };
+                (lst as List<ContactViewModel>).Insert(0, cm);
+            }
+        }
 
         private void AssignCommands()
         {
@@ -63,19 +83,5 @@ namespace TerzoChat.ViewModel
                 });
         }
 
-        private void loadAccount()
-        {
-            BaseRPCService service = new BaseRPCService();
-            try
-            {
-                string version = service.GetVersion();
-                Console.WriteLine(" NBS version>>> " + version + ".");
-            
-            }
-            catch
-            {
-               
-            }
-        }
     }
 }

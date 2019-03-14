@@ -13,7 +13,7 @@ using grpc2slib.BBL;
 using Pb;
 using UrusTools.Config;
 using TerzoChat.Config;
-
+using System.ComponentModel;
 
 namespace TerzoChat
 {
@@ -23,6 +23,7 @@ namespace TerzoChat
     public partial class MainWindow : Window
     {
         private BaseRPCService rpcService;
+        private string nbsProcessName = "";
         public MainWindow()
         {
            
@@ -76,9 +77,12 @@ namespace TerzoChat
                 nbsp.StartInfo.UseShellExecute = false;
                 nbsp.StartInfo.FileName = AppState.Instance.START_PATH + System.IO.Path.DirectorySeparatorChar + "nbs.exe";
                 nbsp.StartInfo.CreateNoWindow = true;
-                nbsp.EnableRaisingEvents = AppState.Instance.BothRpcExit;
+                
+                nbsp.EnableRaisingEvents = ConfigManager.Instance.BackProcess();
                 bool r = nbsp.Start();
-                Console.WriteLine("启动》》" + r.ToString());
+                nbsp.WaitForExit(5000);
+                nbsProcessName = nbsp.ProcessName;
+                Console.WriteLine("启动》》" + r.ToString()+">>>>"+nbsp.ProcessName);
                 AppState.Instance.RPC_RUNNING = true;
             }
             catch (Exception e)
@@ -86,6 +90,35 @@ namespace TerzoChat
                 AppState.Instance.RPC_RUNNING = false;
                 Console.WriteLine(e.Message);
             }
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            MessageBoxResult boxResult =
+                MessageBox.Show("是否继续运行NBS服务?","询问" ,MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if(boxResult == MessageBoxResult.No)
+            {
+                stopGRPCServer();
+            }
+            //base.OnClosing(e);
+            e.Cancel = false;
+        }
+        //
+        private void stopGRPCServer()
+        {
+            if (String.IsNullOrEmpty(nbsProcessName)) nbsProcessName = "nbs";
+            Process[] kps = Process.GetProcessesByName(nbsProcessName);
+            if (kps.Length > 0)
+            {
+                foreach(Process pk in kps)
+                {
+                    try {
+                        pk.Kill();
+                    } catch { }
+                   
+                }
+            }
+            
         }
 
         private void checkedAndCreateNBS()

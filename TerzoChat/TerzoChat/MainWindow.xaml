@@ -14,35 +14,44 @@
             <Border x:Name="LeftBorder" Background="AliceBlue" BorderBrush="#EB6100" BorderThickness="0,0,1,0">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="70"/>
                         <RowDefinition Height="40"/>
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <Border Grid.Row="0" Grid.RowSpan="2" Background="Transparent" Opacity="0.8"
                             BorderBrush="#DADAD2" BorderThickness="0,0,0,2"
                         ></Border>
-                    <DockPanel x:Name="AccInfo" Grid.Row="0" Margin="5,2"
-                                Height="70">
+                    <DockPanel x:Name="AccInfo" Grid.Row="0" Margin="5,2">
                         <StackPanel DockPanel.Dock="Right" Width="30" VerticalAlignment="Center">
-                            <u2ui:FButton Margin="0" ToolTip="设置" FIconSize="30" Foreground="{StaticResource FIconForeground}"
+                            <u2ui:FButton Margin="0" ToolTip="设置" FIconSize="30" Name="MoreMenuFIcon"
+                             Foreground="{StaticResource FIconForeground}"
                              Style="{StaticResource FButton_Transparency}" 
                             FIcon="&#xe64c;"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Image Source="/avatars/fuchen200.png" Width="50" Height="50" />
+                            <Grid VerticalAlignment="Center" Margin="8,0,5,0">
+                                <Ellipse  HorizontalAlignment="Center" Width="50" Height="50" 
+                                          Stroke="AliceBlue" OpacityMask="Aquamarine"
+                                    VerticalAlignment="Center" StrokeThickness="0.3">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="/avatars/logo.png"></ImageBrush>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                            </Grid>
+                            
                             <TextBox x:Name="NickLabel" TextWrapping="Wrap" MaxWidth="200" 
-                                     Background="Transparent" BorderThickness="0"
-                                     
+                                     Background="Transparent" BorderThickness="0" IsReadOnly="True"  
                                      VerticalAlignment="Center" FontSize="10"/>
                         </StackPanel>
                     </DockPanel>
                     <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center"
                                 Margin="5,2" Background="Transparent">
-                        <u2ui:FButton  Command="{Binding ReMoveSelect}"
+                        <u2ui:FButton  Command="{Binding ReMoveSelect}" Name="SearchIcon"
                             Style="{StaticResource FButton_Transparency}" Width="30"
                             Foreground="{StaticResource FIconForeground}"
                             FIcon="&#xe751;"/>
-                        <TextBox Width="250" BorderThickness="0" Opacity="0.4" VerticalContentAlignment="Center"/>
+                        <TextBox x:Name="SearchTextBox"
+                            Width="250" BorderThickness="0" Opacity="0.4" VerticalContentAlignment="Center"/>
                     </StackPanel>
                     <DockPanel Grid.Row="2" LastChildFill="True">
                         <ScrollViewer 
@@ -52,16 +61,19 @@
                                 <ListBox.ItemTemplate>
                                     <DataTemplate DataType="{x:Type peer:ContactViewModel}">
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                            <Image Source="/avatars/fuchen200.png" Width="30" Height="30" Margin="10,4"/>
-                                            <Grid Height="50">
+                                            <Image Source="{Binding AvatarImg}" Width="30" Height="30" Margin="10,4"/>
+                                            <Grid Height="55">
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="25"/>
                                                     <RowDefinition />
                                                 </Grid.RowDefinitions>
-                                                <Label x:Name="NickLabel" Grid.Row="0" Foreground="BlueViolet"
-                                                   Content="{Binding Nickname}" FontSize="15"/>
-                                                <Label x:Name="PWLabel" Grid.Row="1"
-                                                   Content="{Binding Password}" FontSize="12"/>
+                                                <TextBox x:Name="NickLabel" Grid.Row="0" Foreground="BlueViolet" 
+                                                         Background="Transparent" BorderThickness="0" IsReadOnly="True" 
+                                                         TextWrapping="Wrap" MaxWidth="220" VerticalContentAlignment="Center"
+                                                   Text="{Binding Nickname}" FontSize="14"/>
+                                                <TextBox x:Name="PWLabel" Grid.Row="1" MaxWidth="220" VerticalContentAlignment="Top"
+                                                          Background="Transparent" TextWrapping="Wrap" BorderThickness="0" IsReadOnly="True" 
+                                                   Text="{Binding Password}" FontSize="10"/>
                                             </Grid>
                                         </StackPanel>
                                     </DataTemplate>

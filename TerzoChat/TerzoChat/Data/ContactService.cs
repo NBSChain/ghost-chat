@@ -28,11 +28,11 @@ namespace TerzoChat.Data
                 ContactViewModel m =
                     new ContactViewModel {
                         Nickname = "NBS" + a.ToString(),
-                        Password = "12pw234x"
-                        //AvatarImg = "/avatars/fuchen200.png"
+                        Password = "12pw234x",
+                        AvatarImg = "/avatars/fuchen200.png"
                     };
 
-                lst.Add(m);
+                //lst.Add(m);
             }
             return lst;
         }

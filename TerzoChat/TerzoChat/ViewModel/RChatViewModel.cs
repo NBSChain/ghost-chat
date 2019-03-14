@@ -4,7 +4,11 @@ using System.Collections.ObjectModel;
 using System;
 using System.Windows.Input;
 using System.Windows.Controls;
+using grpc2slib;
+using grpc2slib.BBL;
 using TerzoChat.Data;
+using TerzoChat.Model;
+
 
 
 /**
@@ -24,6 +28,7 @@ namespace TerzoChat.ViewModel
 {
     public class RChatViewModel : ViewModelBase
     {
+        private BaseRPCService service = new BaseRPCService();
         public RChatViewModel(IStorage<MessageViewModel> storage)
         {
             var msgs = storage.GetList();
@@ -61,7 +66,6 @@ namespace TerzoChat.ViewModel
 
             SendTextEnter = new RelayCommand<TextBox>(a => {
                 if (a != null && a.Text.Length>0) {
-                 
                     string c = a.Text;
                     Console.WriteLine(c);
                     this.SendContent(c);
@@ -79,15 +83,17 @@ namespace TerzoChat.ViewModel
 
         private void SendContent(string content)
         {
+            bool flag = service.SendText2World(content);
             MessageViewModel m = new MessageViewModel
             {
-                Nickname = "lanbery",
-                AvatarName = "/avatars/fuchen200.png",
+                PID = AppState.Instance.CID,
+                Nickname = "Me",
+                AvatarName = "/avatars/nbsstar.png",
                 IsSelf = true,
-                MessageState = Model.MessageState.Normal,
                 ShowTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                 MsgType = Model.MessageType.text,
-                Content = content
+                Content = content,
+                MessageState = flag ? MessageState.Normal : MessageState.Failure
             };
             MessageRecord.Add(m);
         }

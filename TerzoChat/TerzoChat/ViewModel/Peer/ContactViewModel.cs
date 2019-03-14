@@ -28,8 +28,8 @@ namespace TerzoChat.Peer
 
         public string Password { get => _pw; set => Set(ref _pw, value); }
 
-        //private string _avatarImg;
+        private string _avatarImg;
 
-        //public string AvatarImg { get => _avatarImg; set => Set(ref _avatarImg, value); }
+        public string AvatarImg { get => _avatarImg; set => Set(ref _avatarImg, value); }
     }
 }
