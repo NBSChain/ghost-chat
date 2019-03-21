@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Controls;
 using UrusTools.Config;
@@ -35,31 +36,58 @@ namespace TerzoChat.ViewModel
 {
     public class RChatViewModel : ViewModelBase
     {
-        
-        private BaseRPCService service;
-        public RChatViewModel(IStorage<MessageViewModel> storage)
+        private readonly PubSubServiceClient<MessageViewModel> serviceClient;
+
+        private MessageViewModel SELF;
+        private ObservableCollection<MessageViewModel> _collection = new ObservableCollection<MessageViewModel>();
+        private readonly object _lockObject = new object();
+        public RChatViewModel(IStorage<MessageViewModel> storage) : base()
         {
-            var msgs = storage.GetList();
-            this.AssignCommands();
+
             Title = "NBS群聊";
-            MessageRecord = new ObservableCollection<MessageViewModel>(msgs);
+            initSelf();
+            BindingOperations.EnableCollectionSynchronization(_collection, _lockObject);
+            PubSubTask.PubSubTaskClient cli = new PubSubTask.PubSubTaskClient(GrpcBaseHelper.Instance().Channel);
+            serviceClient = new PubSubServiceClient<MessageViewModel>(cli,_collection,SELF,true);
+            StartRecving();
 
-            //Listening the World
-            //ListenNBSWorld();
-            Thread thread = new Thread(delegate ()
-            {
-                Channel c = new Channel("127.0.0.1", 10001, ChannelCredentials.Insecure);
+            this.AssignCommands();
 
-                GetMsg(c, MessageRecord).Wait();
-            });
-            thread.IsBackground = true;
-            thread.Start();
-           
-            //c.ShutdownAsync().Wait();
-            service = new BaseRPCService();
+            loadLocalHistory(storage,1);
+
         }
 
-        public ObservableCollection<MessageViewModel> MessageRecord { get; set; }
+        private void StartRecving()
+        {
+            serviceClient.StartRecvListener(NBSTopic.NBSWorld, MessageModelUtils.buildRecvMessage).ConfigureAwait(true);
+        }
+
+        private void initSelf()
+        {
+            this.SELF = new MessageViewModel(true)
+            {
+                UID = AppState.Instance.CID,
+                Nickname = "Me",
+                AvatarName = "/avatars/logo.png",
+                MsgType = Model.MessageType.text,
+                MessageState = MessageState.Failure
+            };
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="storage"></param>
+        /// <param name="beforeDays"></param>
+        private void loadLocalHistory(IStorage<MessageViewModel> storage,int beforeDays)
+        {
+
+        }
+
+        public ObservableCollection<MessageViewModel> MessageRecord
+        {   get => _collection;
+            set =>Set(ref _collection,value);
+        }
 
         public string Title { get; set; }
 
@@ -101,76 +129,11 @@ namespace TerzoChat.ViewModel
            
         }
 
-        
-
-        async static Task GetMsg(Channel channel,ObservableCollection<MessageViewModel> collection)
-        {
-            var client = new PubSubTask.PubSubTaskClient(channel);
-            SubscribeRequest request = new SubscribeRequest { Topics = "NBSWorld" };
-            string ts = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            Console.WriteLine("===>>>>>>>>>>>"+ts);
-            try
-            {
-                using(var call = client.Subscribe(request))
-                {
-                    var respStream = call.ResponseStream;
-                    while(await respStream.MoveNext())
-                    {
-                        var res = respStream.Current;
-                        
-                        Console.WriteLine("===>>>>>>>>>>>" + res.From);
-                    }
-                }
-            }catch(Exception e)
-            {
-                Console.WriteLine(e.StackTrace);
-            }
-        }
-
-        private async void ListenNBSWorld()
-        {
-            
-            Thread listenThread = new Thread(delegate ()
-            {
-                SubscribeMessageService messageService = new SubscribeMessageService();
-                try
-                {
-                    int a = 0;
-                    while (a < 10)
-                    {
-                        a++;
-                        Thread.Sleep(1000);
-                        Console.WriteLine("Thread ..... " + a.ToString());
-                    }
-                    messageService.TaskReciver(MessageRecord).Wait();
-                }
-                catch(Exception r)
-                {
-                    Console.WriteLine(r.Message);
-                }
-                
-           
-                
-            });
-            listenThread.IsBackground = true;
-            listenThread.Start();
-        }
 
         private void SendContent(string content)
         {
-            bool flag = service.SendText2World(content);
-            MessageViewModel m = new MessageViewModel
-            {
-                PID = AppState.Instance.CID,
-                Nickname = "Me",
-                AvatarName = "/avatars/nbsstar.png",
-                IsSelf = true,
-                ShowTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-                MsgType = Model.MessageType.text,
-                Content = content,
-                MessageState = flag ? MessageState.Normal : MessageState.Failure
-            };
-            MessageRecord.Add(m);
+            serviceClient.SendMessage(
+                NBSTopic.NBSWorld, content, MessageModelUtils.buildSendMessage1);
         }
     }
 

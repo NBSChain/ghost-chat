@@ -44,6 +44,10 @@ namespace TerzoChat
             get { return _cid; }
             set { _cid = String.IsNullOrEmpty(value) ? "" : value; }
         }
+        /// <summary>
+        /// nbs 服务版本
+        /// </summary>
+        public string GrpcServerVersion { get; set; }
 
         private AppState()
         {

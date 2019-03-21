@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Windows;
-
 using System.Diagnostics;
 using TerzoChat.View;
 using Demo;
@@ -14,6 +13,7 @@ using Pb;
 using UrusTools.Config;
 using TerzoChat.Config;
 using System.ComponentModel;
+using System.Threading;
 
 namespace TerzoChat
 {
@@ -22,30 +22,121 @@ namespace TerzoChat
     /// </summary>
     public partial class MainWindow : Window
     {
-        private BaseRPCService rpcService;
+
         private string nbsProcessName = "";
+        private GrpcBaseHelper GrpcBase;
+        private bool Debug = true;
+        private AccountServiceClient accountService;
         public MainWindow()
         {
-           
             AppState.Instance.RPC_RUNNING = CheckedNBSRunning();
-           
+            GrpcBase = GrpcBaseHelper.Instance();
             if (!AppState.Instance.RPC_RUNNING)
             {
+                CreateAccountOffline("123456");
                 StartNBSGrpc();
             }
-            checkedAndCreateNBS();
-
+            //
+            initialGrpcService();
+            GetVersion();//
+            GetAccount();
             InitializeComponent();
             this.LoadChat();
             
         }
 
+        private void GetVersion()
+        {
+            if (this.accountService == null) return;
+            try
+            {
+                string ver = accountService.GetCurrentVersion();
+                Console.WriteLine("Version>>>>>>>>>>>>>>>>" + ver);
+                AppState.Instance.GrpcServerVersion = ver;
+                AppState.Instance.RPC_RUNNING = true;
+            }
+            catch
+            {
+                AppState.Instance.RPC_RUNNING = false;
+            }
+        }
+        /// <summary>
+        /// 加载GrpcService
+        /// </summary>
+        private void initialGrpcService()
+        {
+            //加载GrpcBase
+            this.accountService = new AccountServiceClient(
+                new VersionTask.VersionTaskClient(GrpcBase.Channel),
+                new AccountTask.AccountTaskClient(GrpcBase.Channel),
+                Debug
+                );
+
+        }
+
+        private void GetAccount()
+        {
+            if (this.accountService == null) return;
+            try
+            {
+                string acid = accountService.GetAccountHID();
+                if (String.IsNullOrEmpty(acid))
+                {
+                    AppState.Instance.CID = "";
+                }
+                else
+                {
+                    AppState.Instance.CID = acid;
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void CreateAccountOffline(string pw)
+        {
+            Process ncp = new Process();
+            ncp.StartInfo.UseShellExecute = false;
+            ncp.StartInfo.FileName = AppState.Instance.START_PATH + System.IO.Path.DirectorySeparatorChar + "nbs.exe";
+
+            ncp.StartInfo.Arguments = @"account create" + @" " + pw + " -o";
+
+            ncp.StartInfo.CreateNoWindow = true;
+
+            ncp.EnableRaisingEvents = true;
+            bool r = ncp.Start();
+            ncp.WaitForExit();
+        }
+
+        /// <summary>
+        /// TODO
+        /// </summary>
+        private void CreateAccount()
+        {
+            try
+            {
+                Channel channel = GrpcBase.NewChannel();
+                var accountTask = new AccountTask.AccountTaskClient(channel);
+
+                accountTask.CreateAccount(new CreateAccountRequest { Password = "123456" });
+                Console.WriteLine(">>>>>>create success.");
+            }catch(Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         private void LoadChat()
         {
             this.RChatContainer.Children.Clear();
-            this.NickLabel.Text = AppState.Instance.CID;
+
             Console.WriteLine("==============================CID===>" + AppState.Instance.CID);
-            this.RChatContainer.Children.Add(new ChatMainView());
+            this.RChatContainer.Children.Add(new ChatMainView(AppState.Instance.CID));
         }
 
         private bool CheckedNBSRunning()
@@ -55,6 +146,10 @@ namespace TerzoChat
             {
                 processes = Process.GetProcessesByName("nbs");
                 Console.WriteLine("nbs process :" + processes.Length.ToString());
+                foreach(Process p in processes)
+                {
+                    Console.WriteLine(" process Name:" + p.ProcessName);
+                }
                 return processes.Length > 0; 
             }
             catch (Exception)
@@ -63,12 +158,6 @@ namespace TerzoChat
             }
         }
 
-        private void setNickName()
-        {
-            if (AppState.Instance.CID != null) this.NickLabel.Text = AppState.Instance.CID;
-        }
-  
-
         private void StartNBSGrpc()
         {
             try
@@ -76,11 +165,24 @@ namespace TerzoChat
                 Process nbsp = new Process();
                 nbsp.StartInfo.UseShellExecute = false;
                 nbsp.StartInfo.FileName = AppState.Instance.START_PATH + System.IO.Path.DirectorySeparatorChar + "nbs.exe";
+                Console.WriteLine("启动exe》》" + nbsp.StartInfo.FileName);
                 nbsp.StartInfo.CreateNoWindow = true;
                 
                 nbsp.EnableRaisingEvents = ConfigManager.Instance.BackProcess();
                 bool r = nbsp.Start();
-                nbsp.WaitForExit(5000);
+                
+                int i = 0;
+                while(i<10 && !AppState.Instance.RPC_RUNNING)
+                {
+                    bool b = CheckedNBSRunning();
+                    AppState.Instance.RPC_RUNNING = b;
+                    i++;
+
+                    Console.WriteLine(">>>" + i+"==="+b.ToString());
+                    Thread.Sleep(1000);
+                }
+
+                nbsp.WaitForExit(1000);
                 nbsProcessName = nbsp.ProcessName;
                 Console.WriteLine("启动》》" + r.ToString()+">>>>"+nbsp.ProcessName);
                 AppState.Instance.RPC_RUNNING = true;
@@ -88,6 +190,7 @@ namespace TerzoChat
             catch (Exception e)
             {
                 AppState.Instance.RPC_RUNNING = false;
+                //TODO Toolbar
                 Console.WriteLine(e.Message);
             }
         }
@@ -123,40 +226,42 @@ namespace TerzoChat
 
         private void checkedAndCreateNBS()
         {
-            rpcService = new BaseRPCService();
-            //创建账户
+            if (this.accountService == null) return;
+            
             try
-            {
-                AppState.Instance.CID =rpcService.GetAccount();
+            { 
+                string acid = accountService.GetAccountHID();
+                if (String.IsNullOrEmpty(acid))
+                {
+                    //bool cr = this.accountService.CreateAccount("123456");
+                    var accountTask = new AccountTask.AccountTaskClient(GrpcBase.Channel);
+
+                    CreateAccountResponse res = accountTask.CreateAccount(new CreateAccountRequest { Password = "123456" });
+
+                    if (String.IsNullOrEmpty(res.Message))
+                    {
+                        AppState.Instance.CID = this.accountService.GetAccountHID();
+                        AppState.Instance.RPC_RUNNING = true;
+                    }
+                    else
+                    {
+                        //为创建成功
+                        throw new Exception("Create Account Error.");
+                    }
+                }
+                AppState.Instance.CID = acid;
                 AppState.Instance.RPC_RUNNING = true;
             }
-            catch(RpcException e)
+            catch(Exception e)
             {
-                AppState.Instance.RPC_RUNNING = false;
-                Console.WriteLine("====================>>>Grpc error:"+e.Message);
-            }
-            catch (RpcResultException)
-            {
-                //create
-                try
-                {
-                    rpcService.CreateAccountOffline();
-                    AppState.Instance.CID = rpcService.GetAccount();
-                    AppState.Instance.RPC_RUNNING = true;
-                }
-                catch(RpcException re)
-                { 
-                    AppState.Instance.RPC_RUNNING = false;
-                    Console.WriteLine("====================>>>Grpc create error:" + re.Message);
-                }
+                Console.WriteLine("====================>>>Grpc error:" + e.Message);
             }
             finally
             {
-                if (!AppState.Instance.RPC_RUNNING)
-                {
-                    //TO taskbarmsg
-                }
-            }           
+                //
+            }
+
+        
         }
     }
 }

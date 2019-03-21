@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using TerzoChat.Data;
 using TerzoChat.Model;
 using System;
@@ -18,59 +19,46 @@ using System;
  */
 namespace TerzoChat.ViewModel
 {
-    public class MessageViewModel 
-        : ValidObservableObject<MessageViewModel>
+    public class MessageViewModel : ViewModelBase
     {
-        public MessageViewModel() : base(MessageValidator.Singleton.Value, ViewModelState.Valid) { }
+        public MessageViewModel(bool self):base()
+        {
+            IsSelf = self;
+            MessageTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        }
+        public MessageViewModel() : base()
+        {
+            IsSelf = false;
+            MessageTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        }
 
         private string _nickname;
-        private string _stime;
         private string _avatarName;
-        private string content;
-        private bool _isSelf;
-        private MessageType _msgtype;
 
         private MessageState _state;
+
+        public string MessageTime { get; set; }
 
         public MessageState MessageState
         {
             get => _state;
             set => Set(ref _state, value);
         }
-
-        private string _mid;
-
-        public string UID
-        {
-            get => _mid;
-            private set
-            {
-                _mid = Guid.NewGuid().ToString();
-            }
-        }
-
-        private string _pid;
-
-        public string PID
-        {
-            get => _pid;
-            set => Set(ref _pid, value);
-        }
+        public string UID { get; set; }
 
         public string Nickname { get => _nickname; set => Set(ref _nickname, value); }
 
-        public string ShowTime { get => _stime; set => Set(ref _stime, value); }
 
         public string AvatarName { get => _avatarName; set => Set(ref _avatarName, value); }
 
-        public string Content { get => content; set => Set(ref content, value); }
+        public string Content { get; set; }
 
-        public bool IsSelf { get => _isSelf; set => Set(ref _isSelf, value); }
+        public bool IsSelf { get; set; }
 
         public MessageType MsgType
         {
-            get => _msgtype;
-            set => Set(ref _msgtype, value);
+            get;
+            set;
         }
 
     }

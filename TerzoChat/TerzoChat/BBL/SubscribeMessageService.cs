@@ -66,11 +66,11 @@ namespace TerzoChat.BBL
                         Console.WriteLine("<---------------------------------");
                         MessageViewModel m = new MessageViewModel
                         {
-                            PID = resp.From,
+                            UID = resp.From,
                             Nickname = resp.From,
                             AvatarName = "/avatars/other.gif",
                             IsSelf = false,
-                            ShowTime = ts,
+                            MessageTime = ts,
                             MessageState = MessageState.Normal,
                             MsgType = MessageType.text,
                             Content = resp.MsgData.ToString()
@@ -90,7 +90,7 @@ namespace TerzoChat.BBL
 
         public void ShutdownChannel()
         {
-            baseHelper.Shutdown(channel);
+            baseHelper.ShutdownAsync(channel);
         }
 
     }

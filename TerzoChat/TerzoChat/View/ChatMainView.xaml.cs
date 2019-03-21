@@ -33,10 +33,10 @@ namespace TerzoChat.View
     /// </summary>
     public partial class ChatMainView : UserControl
     {
-        public ChatMainView()
+
+        public ChatMainView(string acid)
         {
-            InitializeComponent();
-            
+            InitializeComponent(); 
         }
 
         private void SizeChangedFuc(object sender, SizeChangedEventArgs e)

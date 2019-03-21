@@ -39,7 +39,7 @@ namespace TerzoChat.Data
                     Nickname = _prex + a.ToString(),
                     Content = "jsdhf哈地方了开始打对方sfdalksdfasdhfadsfads阿斯蒂芬哈市的福克斯回复的",
                     AvatarName = "/avatars/fuchen200.png",
-                    ShowTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                    MessageTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                     IsSelf = a%3 == 0 ? true:false ,
                     MessageState = Model.MessageState.Normal,
                     MsgType = Model.MessageType.text
