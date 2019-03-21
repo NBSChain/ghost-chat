@@ -48,7 +48,7 @@ namespace TerzoChat.ViewModel
             initSelf();
             BindingOperations.EnableCollectionSynchronization(_collection, _lockObject);
             PubSubTask.PubSubTaskClient cli = new PubSubTask.PubSubTaskClient(GrpcBaseHelper.Instance().Channel);
-            serviceClient = new PubSubServiceClient<MessageViewModel>(cli,_collection,SELF,true);
+            serviceClient = new PubSubServiceClient<MessageViewModel>(cli,_collection,SELF,SELF.UID,true);
             StartRecving();
 
             this.AssignCommands();
