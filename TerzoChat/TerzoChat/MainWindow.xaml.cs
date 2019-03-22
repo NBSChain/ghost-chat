@@ -100,7 +100,7 @@ namespace TerzoChat
             Process ncp = new Process();
             ncp.StartInfo.UseShellExecute = false;
             ncp.StartInfo.FileName = AppState.Instance.START_PATH + System.IO.Path.DirectorySeparatorChar + "nbs.exe";
-
+            Console.WriteLine(ncp.StartInfo.FileName);
             ncp.StartInfo.Arguments = @"account create" + @" " + pw + " -o";
 
             ncp.StartInfo.CreateNoWindow = true;
