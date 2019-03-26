@@ -30,7 +30,7 @@ namespace TerzoChat
         public MainWindow()
         {
             AppState.Instance.RPC_RUNNING = CheckedNBSRunning();
-            GrpcBase = GrpcBaseHelper.Instance();
+            GrpcBase = GrpcBaseHelper.Instance(true);//openDebug
             if (!AppState.Instance.RPC_RUNNING)
             {
                 CreateAccountOffline("123456");
@@ -127,6 +127,7 @@ namespace TerzoChat
                 Console.WriteLine(e.StackTrace);
             }
         }
+
 
         /// <summary>
         /// 

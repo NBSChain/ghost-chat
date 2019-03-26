@@ -26,12 +26,21 @@
     <Grid>
         <Border Background="AliceBlue" Opacity="0.7">
         <DockPanel LastChildFill="True">
-            <StackPanel DockPanel.Dock="Top" >
+            <DockPanel DockPanel.Dock="Top" VerticalAlignment="Center">
                 <Border BorderThickness="0,0,0,2" BorderBrush="#DADAD2" Height="55">
-                    <Label Content="{Binding Title}" Foreground="{StaticResource FontTextForeground}" FontSize="22"  HorizontalAlignment="Left"
-                       Background="Transparent"/>
-                </Border>
-            </StackPanel>
+                        <DockPanel LastChildFill="True" x:Name="ChatMoreContainer">
+                            <Grid DockPanel.Dock="Right" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="2" Width="60">
+                                <u2ui:FButton FIcon="&#xe616;" FIconSize="32" 
+                                    Style="{StaticResource FButton_Transparency}" 
+                                    Foreground="{StaticResource FontTextForeground}">
+                                </u2ui:FButton>
+                            </Grid>
+                            <Label Content="{Binding Title}" Foreground="{StaticResource FontTextForeground}" 
+                                   VerticalContentAlignment="Center" VerticalAlignment="Center"
+                                   FontSize="22"  HorizontalAlignment="Left" Background="Transparent"/>
+                        </DockPanel>
+                    </Border>
+            </DockPanel>
             <DockPanel LastChildFill="True">
                 <Border >
                     <DockPanel LastChildFill="True" VerticalAlignment="Stretch">

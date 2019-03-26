@@ -49,6 +49,23 @@ namespace TerzoChat
         /// </summary>
         public string GrpcServerVersion { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public string GetLogFilePath(string fileName)
+        {
+            if (String.IsNullOrEmpty(fileName))
+            {
+                return @""+START_PATH + System.IO.Path.DirectorySeparatorChar;
+            }
+            else
+            {
+                string path = @""+START_PATH + System.IO.Path.DirectorySeparatorChar +fileName;
+                return path;
+            }
+        }
         private AppState()
         {
             START_PATH = Directory.GetCurrentDirectory();

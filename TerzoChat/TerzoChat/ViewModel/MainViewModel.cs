@@ -2,7 +2,6 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Windows.Data;
 using System.Windows.Input;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UrusTools.Config;
 using TerzoChat.Data;
@@ -10,6 +9,7 @@ using TerzoChat.Peer;
 using Pb;
 using grpc2slib.BBL;
 using System;
+using System.Windows;
 
 namespace TerzoChat.ViewModel
 {
@@ -31,24 +31,26 @@ namespace TerzoChat.ViewModel
         private string _acid;
         private ObservableCollection<ContactViewModel> _contacts = new ObservableCollection<ContactViewModel>();
         private readonly object _lockContacts = new object();
-        
+        //»’÷æ
+        private readonly string debugPath;
 
+        private readonly GossipServiceClient gossipService;
+        
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel(IStorage<ContactViewModel> storage) :base()
         {
             BindingOperations.EnableCollectionSynchronization(_contacts, _lockContacts);
-
+            debugPath = AppState.Instance.GetLogFilePath("gossip");
+            if (!System.IO.Directory.Exists(debugPath)) System.IO.Directory.CreateDirectory(debugPath);
             _nick = AppState.Instance.CID;
             _acid = AppState.Instance.CID;
             AddSelfToContacts(_nick, _acid);
-            AssignCommands();
-                   
+            // 
+            if (gossipService == null) gossipService = new GossipServiceClient(GrpcBaseHelper.Instance(), debugPath, "debug-gossip.txt");
+            AssignCommands();         
         }
-
-        private int _count = 0;
-
 
   
         public string ACID { get => _acid; set => Set(ref _acid,value); }
@@ -61,9 +63,9 @@ namespace TerzoChat.ViewModel
             set => Set(ref _contacts, value);
         }
 
-        public ICommand ReMoveSelect { get; private set; }
+        public ICommand DebugGossip { get; private set; }
 
-        public ICommand InsertOne { get; private set; }
+        public ICommand OpenGossipFolder { get; private set; }
 
         private void AddSelfToContacts(string nick ,string acid)
         {
@@ -78,18 +80,30 @@ namespace TerzoChat.ViewModel
 
         private void AssignCommands()
         {
-            ReMoveSelect = new RelayCommand<ContactViewModel>(a =>
+            DebugGossip = new RelayCommand<string>(a =>
             {
                 if (a == null) return;
-                ContactViewModel c = a as ContactViewModel;
-                Console.WriteLine("rev"+ a.Nickname);
-                ContactList.Remove(a);
+                Console.WriteLine(">>>Parameter>>" + a);
+                
+                DebugCmd cmd = new DebugCmd { Cmd = a.ToString() };
+                try
+                {
+                    DebugResult result = gossipService.GossipDebug(cmd);
+                    string val = gossipService.FormatResult(result);
+                    gossipService.WriteLog(result);
+                    Console.WriteLine(val);
+                    MessageBox.Show(val,"Debug");
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message, "Debug");
+                }
             });
-            InsertOne = new RelayCommand(() => {
-                _count++;
-                Console.WriteLine("add"+_count.ToString());
-                ContactList.Add(new ContactViewModel { Nickname = "Add"+_count.ToString(), Password = "AAsss11" });
-                });
+
+
+            OpenGossipFolder = new RelayCommand(() => {
+                System.Diagnostics.Process.Start("explorer.exe", debugPath);
+            });
         }
 
     }

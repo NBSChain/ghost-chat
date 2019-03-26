@@ -17,6 +17,7 @@
                         <RowDefinition Height="70"/>
                         <RowDefinition Height="40"/>
                         <RowDefinition />
+                        <RowDefinition Height="40"/>
                     </Grid.RowDefinitions>
                     <Border Grid.Row="0" Grid.RowSpan="2" Background="Transparent" Opacity="0.8"
                             BorderBrush="#DADAD2" BorderThickness="0,0,0,2"
@@ -39,7 +40,7 @@
                                 </Ellipse>
                             </Grid>
                             
-                            <TextBox x:Name="NickLabel" TextWrapping="Wrap" MaxWidth="200" 
+                            <TextBox x:Name="NickLabel" TextWrapping="Wrap" MaxWidth="180" 
                                      Background="Transparent" BorderThickness="0" IsReadOnly="True" 
                                      Text="{Binding ACID}"
                                      VerticalAlignment="Center" FontSize="10" />
@@ -83,6 +84,24 @@
 
                         </ScrollViewer>
                      </DockPanel>
+                    <!-- Debug Region -->
+                    <DockPanel Grid.Row="3" LastChildFill="True">
+                        <Border Background="LightGray" Opacity="0.3">
+                            <StackPanel Background="Transparent" VerticalAlignment="Center" Orientation="Horizontal"
+                                Margin="5,2" HorizontalAlignment="Right">
+                                <u2ui:FButton FIcon="&#xe611;" FIconSize="20" Width="70"
+                                    x:Name="DebugTest" CommandParameter="showAV"
+                                    Command="{Binding DebugGossip}"
+                                    Foreground="{StaticResource FIconForeground}"
+                                    >测试</u2ui:FButton>
+                                <u2ui:FButton FIcon="&#xe79f;" FIconSize="20" 
+                                    x:Name="OpenDebugLog" Width="70" ToolTip="打开测试日志文件夹" 
+                                    Command="{Binding OpenGossipFolder}" AllowsAnimation="False"                                            
+                                    Foreground="{StaticResource FIconForeground}"
+                                    >打开</u2ui:FButton>
+                            </StackPanel>
+                        </Border>
+                    </DockPanel>
                 </Grid>
          
             </Border>
