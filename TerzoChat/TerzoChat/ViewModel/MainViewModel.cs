@@ -67,6 +67,8 @@ namespace TerzoChat.ViewModel
 
         public ICommand OpenGossipFolder { get; private set; }
 
+        public ICommand RestartGossip { get; private set; }
+
         private void AddSelfToContacts(string nick ,string acid)
         {
             ContactViewModel cm = new ContactViewModel
@@ -80,11 +82,14 @@ namespace TerzoChat.ViewModel
 
         private void AssignCommands()
         {
+            RestartGossip = new RelayCommand(() => {
+                string msg = gossipService.RestartGossip();
+                MessageBox.Show(msg, "ÌבÊ¾", MessageBoxButton.OK, MessageBoxImage.Warning);
+            });
+
             DebugGossip = new RelayCommand<string>(a =>
             {
                 if (a == null) return;
-                Console.WriteLine(">>>Parameter>>" + a);
-                
                 DebugCmd cmd = new DebugCmd { Cmd = a.ToString() };
                 try
                 {

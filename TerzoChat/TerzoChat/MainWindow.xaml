@@ -88,7 +88,12 @@
                     <DockPanel Grid.Row="3" LastChildFill="True">
                         <Border Background="LightGray" Opacity="0.3">
                             <StackPanel Background="Transparent" VerticalAlignment="Center" Orientation="Horizontal"
-                                Margin="5,2" HorizontalAlignment="Right">
+                                Margin="5,2" HorizontalAlignment="Center">
+                                <u2ui:FButton FIcon="&#xe87c;" FIconSize="20" 
+                                    x:Name="RestartGossip" Width="70" ToolTip="重启Gossip" 
+                                    Command="{Binding RestartGossip}" AllowsAnimation="True"                                            
+                                    Foreground="{StaticResource FIconForeground}"
+                                    >重启</u2ui:FButton>
                                 <u2ui:FButton FIcon="&#xe611;" FIconSize="20" Width="70"
                                     x:Name="DebugTest" CommandParameter="showAV"
                                     Command="{Binding DebugGossip}"
